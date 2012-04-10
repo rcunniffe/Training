@@ -1,0 +1,5 @@
+\\sbsvisor\users\rcunniffe\my documents\visual studio 2010\Projects\training_rc\training_rc\bin\training_rc.dll
+\\sbsvisor\users\rcunniffe\my documents\visual studio 2010\Projects\training_rc\training_rc\bin\training_rc.pdb
+\\sbsvisor\users\rcunniffe\my documents\visual studio 2010\Projects\training_rc\training_rc\obj\Debug\ResolveAssemblyReference.cache
+\\sbsvisor\users\rcunniffe\my documents\visual studio 2010\Projects\training_rc\training_rc\obj\Debug\training_rc.dll
+\\sbsvisor\users\rcunniffe\my documents\visual studio 2010\Projects\training_rc\training_rc\obj\Debug\training_rc.pdb
