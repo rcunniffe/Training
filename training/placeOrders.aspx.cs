@@ -19,7 +19,7 @@ namespace training_rc
         {
             SqlConnection sc = null;
             SqlCommand command = null;
-            sc = new SqlConnection(@"Data Source=VIS-RC2\DBI;Initial Catalog=training;Integrated Security=True");               
+            sc = new SqlConnection(@"Data Source=VIS-RC2\DBI;Initial Catalog=training;Integrated Security=True");
             sc.Open();
             string query1 = String.Format(@"INSERT INTO Customers(Firstname,Surname,Address1,Address2,Address3,Postcode,City,Country) VALUES('{0}','{1}','{2}','{3}','{4}','{5}','{6}','{7}')", FirstName.Text, Surname.Text, Address1.Text, Address2.Text, Address3.Text, PostCode.Text, City.Text, Country.Text);
             command = new SqlCommand(query1, sc);
