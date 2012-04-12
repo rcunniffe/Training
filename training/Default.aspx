@@ -11,6 +11,6 @@
         <a href="placeOrders.aspx" title="place an order">Place Order</a>
     </p>
     <p>
-        <a href="" title="">View orders</a>
+        <a href="viewOrders.aspx" title="">View orders</a>
     </p>
 </asp:Content>
