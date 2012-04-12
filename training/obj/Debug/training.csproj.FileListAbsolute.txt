@@ -1,0 +1,5 @@
+D:\dev\training\training\bin\training_rc.dll
+D:\dev\training\training\bin\training_rc.pdb
+D:\dev\training\training\obj\Debug\ResolveAssemblyReference.cache
+D:\dev\training\training\obj\Debug\training_rc.dll
+D:\dev\training\training\obj\Debug\training_rc.pdb

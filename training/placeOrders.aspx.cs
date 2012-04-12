@@ -28,5 +28,10 @@ namespace training_rc
             sc.Close();
             Server.Transfer("~/Default.aspx");
         }
+        public void resetbtn_Click(object sender, EventArgs e)
+        {
+            ViewState.Clear();
+            Response.Redirect(Request.Url.AbsoluteUri.ToString());           
+        }
     }
 }
