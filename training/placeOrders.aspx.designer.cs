@@ -8,9 +8,9 @@
 //------------------------------------------------------------------------------
 
 namespace training_rc {
-    
-    
-    public partial class About {
+
+
+    public partial class placeOrders{
         
         /// <summary>
         /// LFirstName control.

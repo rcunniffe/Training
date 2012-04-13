@@ -1,8 +1,6 @@
-﻿<%@ Page Title="About Us" Language="C#" MasterPageFile="~/Site.master" AutoEventWireup="true"
-    CodeBehind="placeOrders.aspx.cs" Inherits="training_rc.About" %>
+﻿<%@ Page Title="Place Order" Language="C#" MasterPageFile="~/Site.master" AutoEventWireup="true"
+    CodeBehind="placeOrders.aspx.cs" Inherits="training_rc.placeOrders" %>
 
-<asp:Content ID="HeaderContent" runat="server" ContentPlaceHolderID="HeadContent">
-</asp:Content>
 <asp:Content ID="BodyContent" runat="server" ContentPlaceHolderID="MainContent">    
     <div style=" width: 900px; padding-left:350px">
         <h1>
@@ -34,7 +32,7 @@
                     <asp:TextBox ID="Country" runat="server" size="30" class="inputBoxStyle"></asp:TextBox>
                 
                 <p>
-                    <asp:Button ID="Submit" runat="server" Text="Submit" UseSubmitBehavior="true" OnClick="sunmitbtn_Click" class="button"/>
+                    <asp:Button ID="Submit" runat="server" Text="Submit" UseSubmitBehavior="true" OnClick="submitTest" class="button"/>
                     <asp:Button ID="Reset" runat="server" Text="Reset" UseSubmitBehavior="true" OnClick="resetbtn_Click" class="button" />
                 </p>            
     </div>          
