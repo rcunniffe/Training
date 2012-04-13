@@ -10,7 +10,7 @@
 namespace training_rc {
 
 
-    public partial class placeOrders{
+    public partial class PlaceOrders{
         
         /// <summary>
         /// LFirstName control.
