@@ -8,9 +8,9 @@
 //------------------------------------------------------------------------------
 
 namespace training_rc {
-
-
-    public partial class PlaceOrders{
+    
+    
+    public partial class PlaceOrders {
         
         /// <summary>
         /// LFirstName control.
@@ -31,6 +31,15 @@ namespace training_rc {
         protected global::System.Web.UI.WebControls.TextBox FirstName;
         
         /// <summary>
+        /// RequiredFieldValidatorFname control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator RequiredFieldValidatorFname;
+        
+        /// <summary>
         /// LSurname control.
         /// </summary>
         /// <remarks>
@@ -49,6 +58,15 @@ namespace training_rc {
         protected global::System.Web.UI.WebControls.TextBox Surname;
         
         /// <summary>
+        /// RequiredFieldValidatorSname control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator RequiredFieldValidatorSname;
+        
+        /// <summary>
         /// LAddress1 control.
         /// </summary>
         /// <remarks>
@@ -65,6 +83,15 @@ namespace training_rc {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox Address1;
+        
+        /// <summary>
+        /// RequiredFieldValidatorAddress control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator RequiredFieldValidatorAddress;
         
         /// <summary>
         /// LAddress2 control.
@@ -121,6 +148,15 @@ namespace training_rc {
         protected global::System.Web.UI.WebControls.TextBox PostCode;
         
         /// <summary>
+        /// RequiredFieldValidatorPostCode control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator RequiredFieldValidatorPostCode;
+        
+        /// <summary>
         /// LCity control.
         /// </summary>
         /// <remarks>
@@ -139,6 +175,15 @@ namespace training_rc {
         protected global::System.Web.UI.WebControls.TextBox City;
         
         /// <summary>
+        /// RequiredFieldValidatorCity control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator RequiredFieldValidatorCity;
+        
+        /// <summary>
         /// LCountry control.
         /// </summary>
         /// <remarks>
@@ -155,6 +200,15 @@ namespace training_rc {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox Country;
+        
+        /// <summary>
+        /// RequiredFieldValidatorCountry control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator RequiredFieldValidatorCountry;
         
         /// <summary>
         /// Submit control.

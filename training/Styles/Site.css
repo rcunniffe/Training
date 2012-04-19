@@ -316,8 +316,10 @@ div.accountInfo
 }
 .orange
 {
-    padding-right: 30px;
+    padding-right: 5px;
     padding-bottom: 10px;
     
    
 }
+
+.red{color:#fa3a3a;}
