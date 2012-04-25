@@ -117,169 +117,55 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="Address1Resource2.Text" xml:space="preserve">
-    <value />
-  </data>
-  <data name="Address1Resource2.ToolTip" xml:space="preserve">
-    <value />
-  </data>
-  <data name="Address2Resource2.Text" xml:space="preserve">
-    <value />
-  </data>
-  <data name="Address2Resource2.ToolTip" xml:space="preserve">
-    <value />
-  </data>
-  <data name="Address3Resource2.Text" xml:space="preserve">
-    <value />
-  </data>
-  <data name="Address3Resource2.ToolTip" xml:space="preserve">
-    <value />
-  </data>
-  <data name="CityResource2.Text" xml:space="preserve">
-    <value />
-  </data>
-  <data name="CityResource2.ToolTip" xml:space="preserve">
-    <value />
-  </data>
-  <data name="CountryResource2.Text" xml:space="preserve">
-    <value />
-  </data>
-  <data name="CountryResource2.ToolTip" xml:space="preserve">
-    <value />
-  </data>
   <data name="FirstName.Text" xml:space="preserve">
     <value>First Name</value>
-  </data>
-  <data name="FirstName.ToolTip" xml:space="preserve">
-    <value />
-  </data>
-  <data name="FirstNameResource1.Text" xml:space="preserve">
-    <value />
-  </data>
-  <data name="FirstNameResource1.ToolTip" xml:space="preserve">
-    <value />
   </data>
   <data name="LAddress1Resource1.Text" xml:space="preserve">
     <value>Address 1</value>
   </data>
-  <data name="LAddress1Resource1.ToolTip" xml:space="preserve">
-    <value />
-  </data>
   <data name="LAddress2Resource1.Text" xml:space="preserve">
     <value>Address 2</value>
-  </data>
-  <data name="LAddress2Resource1.ToolTip" xml:space="preserve">
-    <value />
   </data>
   <data name="LAddress3Resource1.Text" xml:space="preserve">
     <value>Address 3</value>
   </data>
-  <data name="LAddress3Resource1.ToolTip" xml:space="preserve">
-    <value />
-  </data>
   <data name="LCityResource1.Text" xml:space="preserve">
     <value>City</value>
-  </data>
-  <data name="LCityResource1.ToolTip" xml:space="preserve">
-    <value />
   </data>
   <data name="LCountryResource1.Text" xml:space="preserve">
     <value>Country</value>
   </data>
-  <data name="LCountryResource1.ToolTip" xml:space="preserve">
-    <value />
-  </data>
   <data name="LPostCodeResource1.Text" xml:space="preserve">
     <value>PostCode</value>
-  </data>
-  <data name="LPostCodeResource1.ToolTip" xml:space="preserve">
-    <value />
   </data>
   <data name="LSurnameResource1.Text" xml:space="preserve">
     <value>Surname</value>
   </data>
-  <data name="LSurnameResource1.ToolTip" xml:space="preserve">
-    <value />
-  </data>
   <data name="PageResource1.Title" xml:space="preserve">
     <value>Place Order</value>
-  </data>
-  <data name="PostCodeResource2.Text" xml:space="preserve">
-    <value />
-  </data>
-  <data name="PostCodeResource2.ToolTip" xml:space="preserve">
-    <value />
   </data>
   <data name="RequiredFieldValidatorAddressResource1.ErrorMessage" xml:space="preserve">
     <value>Please enter your an Address</value>
   </data>
-  <data name="RequiredFieldValidatorAddressResource1.Text" xml:space="preserve">
-    <value />
-  </data>
-  <data name="RequiredFieldValidatorAddressResource1.ToolTip" xml:space="preserve">
-    <value />
-  </data>
   <data name="RequiredFieldValidatorCityResource1.ErrorMessage" xml:space="preserve">
     <value>Please enter a City</value>
-  </data>
-  <data name="RequiredFieldValidatorCityResource1.Text" xml:space="preserve">
-    <value />
-  </data>
-  <data name="RequiredFieldValidatorCityResource1.ToolTip" xml:space="preserve">
-    <value />
   </data>
   <data name="RequiredFieldValidatorCountryResource1.ErrorMessage" xml:space="preserve">
     <value>Please enter a Country</value>
   </data>
-  <data name="RequiredFieldValidatorCountryResource1.Text" xml:space="preserve">
-    <value />
-  </data>
-  <data name="RequiredFieldValidatorCountryResource1.ToolTip" xml:space="preserve">
-    <value />
-  </data>
   <data name="RequiredFieldValidatorFnameResource1.ErrorMessage" xml:space="preserve">
     <value>Please enter your First Name</value>
-  </data>
-  <data name="RequiredFieldValidatorFnameResource1.Text" xml:space="preserve">
-    <value />
-  </data>
-  <data name="RequiredFieldValidatorFnameResource1.ToolTip" xml:space="preserve">
-    <value />
   </data>
   <data name="RequiredFieldValidatorPostCodeResource1.ErrorMessage" xml:space="preserve">
     <value>Please enter a Post code</value>
   </data>
-  <data name="RequiredFieldValidatorPostCodeResource1.Text" xml:space="preserve">
-    <value />
-  </data>
-  <data name="RequiredFieldValidatorPostCodeResource1.ToolTip" xml:space="preserve">
-    <value />
-  </data>
   <data name="RequiredFieldValidatorSnameResource1.ErrorMessage" xml:space="preserve">
     <value>Please enter A Surname</value>
-  </data>
-  <data name="RequiredFieldValidatorSnameResource1.Text" xml:space="preserve">
-    <value />
-  </data>
-  <data name="RequiredFieldValidatorSnameResource1.ToolTip" xml:space="preserve">
-    <value />
   </data>
   <data name="ResetResource1.Text" xml:space="preserve">
     <value>Reset</value>
   </data>
-  <data name="ResetResource1.ToolTip" xml:space="preserve">
-    <value />
-  </data>
   <data name="SubmitResource1.Text" xml:space="preserve">
     <value>Submit</value>
-  </data>
-  <data name="SubmitResource1.ToolTip" xml:space="preserve">
-    <value />
-  </data>
-  <data name="SurnameResource2.Text" xml:space="preserve">
-    <value />
-  </data>
-  <data name="SurnameResource2.ToolTip" xml:space="preserve">
-    <value />
   </data>
 </root>
