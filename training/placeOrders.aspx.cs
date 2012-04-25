@@ -25,7 +25,7 @@ namespace training_rc
         {                       
                 try
                 {
-                    if (IsValid())
+                    if (isValid())
                     {
                         using (SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["trainingConnectionString"].ConnectionString))
                         {
@@ -55,13 +55,9 @@ namespace training_rc
         /// Validates the Form on placeOrders.aspx
         /// </summary>
         /// <returns></returns>
-        protected bool IsValid()
-        {                          
-                if ((string.IsNullOrWhiteSpace(FirstName.Text)) && (string.IsNullOrWhiteSpace(Surname.Text)) && (string.IsNullOrWhiteSpace(Address1.Text)) && (string.IsNullOrWhiteSpace(PostCode.Text)) && (string.IsNullOrWhiteSpace(City.Text)) && (string.IsNullOrWhiteSpace(Country.Text)))
-            {                
-                return true;
-            }
-                else { return false; }
+        protected bool isValid()
+        {
+            return ((string.IsNullOrWhiteSpace(FirstName.Text)) && (string.IsNullOrWhiteSpace(Surname.Text)) && (string.IsNullOrWhiteSpace(Address1.Text)) && (string.IsNullOrWhiteSpace(PostCode.Text)) && (string.IsNullOrWhiteSpace(City.Text)) && (string.IsNullOrWhiteSpace(Country.Text)));           
         }
     }
 }
