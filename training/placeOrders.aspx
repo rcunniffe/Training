@@ -1,5 +1,5 @@
 ﻿<%@ Page Title="Place Order" Language="C#" MasterPageFile="~/Site.master" AutoEventWireup="true"
-    CodeBehind="PlaceOrders.aspx.cs" Inherits="training_rc.PlaceOrders" %>
+    CodeBehind="PlaceOrders.aspx.cs" Inherits="training_rc.PlaceOrders" culture="auto" meta:resourcekey="PageResource1" uiculture="auto" %>
 
 <asp:Content ID="BodyContent" runat="server" ContentPlaceHolderID="MainContent"> 
 <script language="javascript" type='text/javascript'>
@@ -12,41 +12,79 @@
         <form action="" id="customerForm">
             <h1>
                 Please fill in Customer Details
-            </h1>                                 
-                        <p><asp:Label ID="LFirstName" runat="server" Text="First Name" class="orange"></asp:Label><span class="red">*</span></p>
-                        <asp:TextBox ID="FirstName" runat="server" size="30" class="inputBoxStyle"></asp:TextBox>
-                        <asp:RequiredFieldValidator id="RequiredFieldValidatorFname" runat="server" ErrorMessage="Please enter your First Name" SetFocusOnError="true" CssClass="red" ControlToValidate="FirstName"></asp:RequiredFieldValidator>
+            </h1>                                          
+                        <p>
+                        <asp:Label ID="LFirstName" runat="server" meta:resourcekey="FirstName" class="orange"></asp:Label><span class="red">*</span>
+                        </p>
+                        <asp:TextBox ID="FirstName" runat="server" size="30" 
+                class="inputBoxStyle" meta:resourcekey="FirstNameResource1"></asp:TextBox>                        
+                        <asp:RequiredFieldValidator id="RequiredFieldValidatorFname" 
+                runat="server" ErrorMessage="Please enter your First Name" 
+                SetFocusOnError="True" CssClass="red" ControlToValidate="FirstName" 
+                meta:resourcekey="RequiredFieldValidatorFnameResource1"></asp:RequiredFieldValidator>                                
                 
-                        <p><asp:Label ID="LSurname" runat="server" Text="Surname" class="orange"></asp:Label><span class="red">*</span></p>
-                        <asp:TextBox ID="Surname" runat="server" size="30" class="inputBoxStyle"></asp:TextBox>
-                        <asp:RequiredFieldValidator id="RequiredFieldValidatorSname" runat="server" ErrorMessage="Please enter A Surname" SetFocusOnError="true" CssClass="red" ControlToValidate="Surname"></asp:RequiredFieldValidator>
+                        <p><asp:Label ID="LSurname" runat="server" class="orange" 
+                                meta:resourcekey="LSurnameResource1"></asp:Label><span class="red">*</span></p>
+                        <asp:TextBox ID="Surname" runat="server" size="30" 
+                class="inputBoxStyle" meta:resourcekey="SurnameResource1"></asp:TextBox>
+                        <asp:RequiredFieldValidator id="RequiredFieldValidatorSname" 
+                runat="server" ErrorMessage="Please enter A Surname" SetFocusOnError="True" 
+                CssClass="red" ControlToValidate="Surname" 
+                meta:resourcekey="RequiredFieldValidatorSnameResource1"></asp:RequiredFieldValidator>
                 
-                        <p><asp:Label ID="LAddress1" runat="server" Text="Address 1" class="orange"></asp:Label><span class="red">*</span></p>
-                        <asp:TextBox ID="Address1" runat="server"  size="30" class="inputBoxStyle"></asp:TextBox>
-                        <asp:RequiredFieldValidator id="RequiredFieldValidatorAddress" runat="server" ErrorMessage="Please enter your an Address" SetFocusOnError="true" CssClass="red" ControlToValidate="Address1"></asp:RequiredFieldValidator>
+                        <p><asp:Label ID="LAddress1" runat="server" class="orange" 
+                                meta:resourcekey="LAddress1Resource1"></asp:Label><span class="red">*</span></p>
+                        <asp:TextBox ID="Address1" runat="server"  size="30" 
+                class="inputBoxStyle" meta:resourcekey="Address1Resource2"></asp:TextBox>
+                        <asp:RequiredFieldValidator id="RequiredFieldValidatorAddress" 
+                runat="server" ErrorMessage="Please enter your an Address" 
+                SetFocusOnError="True" CssClass="red" ControlToValidate="Address1" 
+                meta:resourcekey="RequiredFieldValidatorAddressResource1"></asp:RequiredFieldValidator>
                 
-                        <p><asp:Label ID="LAddress2" runat="server" Text="Address 2" class="orange"></asp:Label></p>
-                        <asp:TextBox ID="Address2" runat="server"  size="30" class="inputBoxStyle"></asp:TextBox>                        
+                        <p><asp:Label ID="LAddress2" runat="server" class="orange" 
+                                meta:resourcekey="LAddress2Resource1"></asp:Label></p>
+                        <asp:TextBox ID="Address2" runat="server"  size="30" 
+                class="inputBoxStyle" meta:resourcekey="Address2Resource2"></asp:TextBox>                        
                 
-                        <p><asp:Label ID="LAddress3" runat="server" Text="Address 3" class="orange"></asp:Label></p>
-                        <asp:TextBox ID="Address3" runat="server" class="inputBoxStyle"></asp:TextBox>                        
+                        <p><asp:Label ID="LAddress3" runat="server" class="orange" 
+                                meta:resourcekey="LAddress3Resource1"></asp:Label></p>
+                        <asp:TextBox ID="Address3" runat="server" class="inputBoxStyle" 
+                meta:resourcekey="Address3Resource2"></asp:TextBox>                        
                 
-                        <p><asp:Label ID="LPostCode" runat="server" Text="PostCode" class="orange"></asp:Label><span class="red">*</span></p>               
-                        <asp:TextBox ID="PostCode" runat="server" size="30" class="inputBoxStyle"></asp:TextBox>
-                        <asp:RequiredFieldValidator id="RequiredFieldValidatorPostCode" runat="server" ErrorMessage="Please enter a Post code" SetFocusOnError="true" CssClass="red" ControlToValidate="PostCode"></asp:RequiredFieldValidator>
+                        <p><asp:Label ID="LPostCode" runat="server" class="orange" 
+                                meta:resourcekey="LPostCodeResource1"></asp:Label><span class="red">*</span></p>               
+                        <asp:TextBox ID="PostCode" runat="server" size="30" 
+                class="inputBoxStyle" meta:resourcekey="PostCodeResource2"></asp:TextBox>
+                        <asp:RequiredFieldValidator id="RequiredFieldValidatorPostCode" 
+                runat="server" ErrorMessage="Please enter a Post code" SetFocusOnError="True" 
+                CssClass="red" ControlToValidate="PostCode" 
+                meta:resourcekey="RequiredFieldValidatorPostCodeResource1"></asp:RequiredFieldValidator>
 
-                        <p><asp:Label ID="LCity" runat="server" Text="City" class="orange"></asp:Label><span class="red">*</span></p>
-                        <asp:TextBox ID="City" runat="server" size="30" class="inputBoxStyle"></asp:TextBox>
-                        <asp:RequiredFieldValidator id="RequiredFieldValidatorCity" runat="server" ErrorMessage="Please enter a City" SetFocusOnError="true" CssClass="red" ControlToValidate="City"></asp:RequiredFieldValidator>
+                        <p><asp:Label ID="LCity" runat="server" class="orange" 
+                                meta:resourcekey="LCityResource1"></asp:Label><span class="red">*</span></p>
+                        <asp:TextBox ID="City" runat="server" size="30" 
+                class="inputBoxStyle" meta:resourcekey="CityResource2"></asp:TextBox>
+                        <asp:RequiredFieldValidator id="RequiredFieldValidatorCity" 
+                runat="server" ErrorMessage="Please enter a City" SetFocusOnError="True" 
+                CssClass="red" ControlToValidate="City" 
+                meta:resourcekey="RequiredFieldValidatorCityResource1"></asp:RequiredFieldValidator>
                 
-                        <p><asp:Label ID="LCountry" runat="server" Text="Country" class="orange"></asp:Label><span class="red">*</span></p>
-                        <asp:TextBox ID="Country" runat="server" size="30" class="inputBoxStyle"></asp:TextBox>
-                        <asp:RequiredFieldValidator id="RequiredFieldValidatorCountry" runat="server" ErrorMessage="Please enter a Country" SetFocusOnError="true" CssClass="red" ControlToValidate="Country"></asp:RequiredFieldValidator> 
+                        <p><asp:Label ID="LCountry" runat="server" class="orange" 
+                                meta:resourcekey="LCountryResource1"></asp:Label><span class="red">*</span></p>
+                        <asp:TextBox ID="Country" runat="server" size="30" 
+                class="inputBoxStyle" meta:resourcekey="CountryResource2"></asp:TextBox>
+                        <asp:RequiredFieldValidator id="RequiredFieldValidatorCountry" 
+                runat="server" ErrorMessage="Please enter a Country" SetFocusOnError="True" 
+                CssClass="red" ControlToValidate="Country" 
+                meta:resourcekey="RequiredFieldValidatorCountryResource1"></asp:RequiredFieldValidator> 
                                                                         
                        
                     <p>
-                        <asp:Button ID="Submit" runat="server" Text="Submit" UseSubmitBehavior="true" OnClick="sunmitbtn_Click" class="button"/>
-                        <asp:Button ID="Reset" runat="server" Text="Reset" UseSubmitBehavior="false" OnClientClick="ClearAllControls(this.form);" class="button" />
+                        <asp:Button ID="Submit" runat="server" OnClick="sunmitbtn_Click" 
+                            class="button" meta:resourcekey="SubmitResource1"/>
+                        <asp:Button ID="Reset" runat="server" UseSubmitBehavior="False" 
+                            OnClientClick="ClearAllControls(this.form);" class="button" 
+                            meta:resourcekey="ResetResource1" />
                     </p>   
                 
         </form>         
