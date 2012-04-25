@@ -1,5 +1,5 @@
 ﻿<%@ Page Title="Place Order" Language="C#" MasterPageFile="~/Site.master" AutoEventWireup="true"
-    CodeBehind="PlaceOrders.aspx.cs" Inherits="training_rc.PlaceOrders" culture="auto" meta:resourcekey="ResourcePageForPlaceOrders" uiculture="auto" %>
+    CodeBehind="PlaceOrders.aspx.cs" Inherits="training_rc.PlaceOrders" culture="auto" meta:resourcekey="PlaceOrdersRessource" uiculture="auto" %>
 
 <asp:Content ID="BodyContent" runat="server" ContentPlaceHolderID="MainContent"> 
 <script language="javascript" type='text/javascript'>
