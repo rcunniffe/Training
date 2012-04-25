@@ -16,7 +16,7 @@
                         <p>
                         <asp:Label ID="LFirstName" runat="server" meta:resourcekey="FirstName" class="orange"></asp:Label><span class="red">*</span>
                         </p>
-                        <asp:TextBox ID="FirstName" runat="server" size="30" class="inputBoxStyle" meta:resourcekey="FirstNameResource1"></asp:TextBox>                        
+                        <asp:TextBox  ID="FirstName" runat="server" size="30" class="inputBoxStyle" meta:resourcekey="FirstNameResource1"></asp:TextBox>                        
                         <asp:RequiredFieldValidator id="RequiredFieldValidatorFname" runat="server" ErrorMessage="RequiredFieldValidatorFnameResource1.ErrorMessage" SetFocusOnError="True" CssClass="red" ControlToValidate="FirstName" meta:resourcekey="RequiredFieldValidatorFnameResource1"></asp:RequiredFieldValidator>                                
                         
                         <p><asp:Label ID="LSurname" runat="server" class="orange" meta:resourcekey="LSurnameResource1"></asp:Label><span class="red">*</span></p>
