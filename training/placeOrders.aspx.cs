@@ -43,7 +43,7 @@ namespace training_rc
                             Response.Write("<script type='text/javascript'>alert('SuccessFul Entry');</script>");
                         }
                     }
-                    else { }
+                    else { Response.Write("<script type='text/javascript'>alert('clienside failed');</script>"); }
                 }
                 catch (Exception ex)
                 {
@@ -57,7 +57,7 @@ namespace training_rc
         /// <returns></returns>
         protected bool isValid()
         {
-            return ((string.IsNullOrWhiteSpace(FirstName.Text)) && (string.IsNullOrWhiteSpace(Surname.Text)) && (string.IsNullOrWhiteSpace(Address1.Text)) && (string.IsNullOrWhiteSpace(PostCode.Text)) && (string.IsNullOrWhiteSpace(City.Text)) && (string.IsNullOrWhiteSpace(Country.Text)));           
+            return (!(string.IsNullOrWhiteSpace(FirstName.Text)) && !(string.IsNullOrWhiteSpace(Surname.Text)) && !(string.IsNullOrWhiteSpace(Address1.Text)) && !(string.IsNullOrWhiteSpace(PostCode.Text)) && !(string.IsNullOrWhiteSpace(City.Text)) && !(string.IsNullOrWhiteSpace(Country.Text)));            
         }
     }
 }

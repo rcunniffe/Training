@@ -2,7 +2,7 @@
     CodeBehind="PlaceOrders.aspx.cs" Inherits="training_rc.PlaceOrders" culture="auto" meta:resourcekey="PlaceOrdersRessource" uiculture="auto" %>
 
 <asp:Content ID="BodyContent" runat="server" ContentPlaceHolderID="MainContent"> 
-<script language="javascript" type='text/javascript'>
+    <script language="javascript" type='text/javascript'>
 
     function ClearAllControls(form) {
         form.reset(); return false;
