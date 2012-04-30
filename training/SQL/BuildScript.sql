@@ -30,7 +30,7 @@ CREATE TABLE Products
 (	Id int IDENTITY(1,1) Primary Key,
 	Name VARCHAR (300),
 	ProductDescription VARCHAR (600) NOT NULL,
-	Price Double NOT NULL);
+	Price FLOAT  Not Null);
 GO
 INSERT INTO Products (Name, ProductDescription, Price)
 VALUES ('Sony Ericsson Xperia X8 black', 'View the viral. Chat to your chums. Xperia™ X8 keeps you entertained. Infinitely. This is the middle child, between the Xperia X10 and the X10 mini. Bringing you all the goodness of a small touchscreen Smartphone for a reasonable price. Now available in black. ', 69.00)
