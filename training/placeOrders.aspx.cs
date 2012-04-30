@@ -57,7 +57,31 @@ namespace training_rc
         /// <returns></returns>
         protected bool isValid()
         {
-            return ((string.IsNullOrWhiteSpace(FirstName.Text)) && (string.IsNullOrWhiteSpace(Surname.Text)) && (string.IsNullOrWhiteSpace(Address1.Text)) && (string.IsNullOrWhiteSpace(PostCode.Text)) && (string.IsNullOrWhiteSpace(City.Text)) && (string.IsNullOrWhiteSpace(Country.Text)));
+            return (!(string.IsNullOrWhiteSpace(FirstName.Text)) && !(string.IsNullOrWhiteSpace(Surname.Text)) && !(string.IsNullOrWhiteSpace(Address1.Text)) && !(string.IsNullOrWhiteSpace(PostCode.Text)) && !(string.IsNullOrWhiteSpace(City.Text)) && !(string.IsNullOrWhiteSpace(Country.Text)));
         }
+
+        protected bool isValidProduct()
+        {
+            ProductListRepeater.Controls[1].FindControl("ProductName");
+            ProductListRepeater.Controls[1].FindControl("ProductQuantity");
+            ProductListRepeater.Controls[1].FindControl("MainContent_ProductListRepeater_ProductQuantity_0");
+            bool isvalidProduct = false;
+            for (int i = 0; i < ProductListRepeater.Items.Count; i++)
+            {
+                var test = ((Label)ProductListRepeater.Controls[i].FindControl("qty")).Text;
+
+                String.IsNullOrEmpty(((Label)ProductListRepeater.Controls[i].FindControl("Label1")).Text);
+                bool mytest = String.IsNullOrEmpty(((Label)ProductListRepeater.Controls[i].FindControl("Label1")).Text);
+                if (mytest == true)
+                {
+                    isvalidProduct = true;
+                }
+                else { }
+            }
+            return isvalidProduct;
+        }
+
+       
+        
     }
 }

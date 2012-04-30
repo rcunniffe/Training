@@ -145,7 +145,7 @@
     <value>Place Order</value>
   </data>
   <data name="placeOrderHeader1" xml:space="preserve">
-    <value>Please fill in Customer Details</value>
+    <value>Please fill the Customer Details</value>
   </data>
   <data name="placeOrderHeader2" xml:space="preserve">
     <value>Please Choose your products</value>

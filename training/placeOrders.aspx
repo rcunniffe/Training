@@ -2,14 +2,30 @@
     CodeBehind="PlaceOrders.aspx.cs" Inherits="training_rc.PlaceOrders" culture="auto" meta:resourcekey="PlaceOrdersRessource" uiculture="auto" %>
 
 <asp:Content ID="BodyContent" runat="server" ContentPlaceHolderID="MainContent"> 
+ <script src="http://code.jquery.com/jquery-latest.js"></script>
     <script language="javascript" type='text/javascript'>
 
-    function ClearAllControls(form) {
+
+    function ClearAllControls(form) {      
         form.reset(); return false;
+    }
+
+    function CheckQuantity(sender, args) {
+        args.IsValid = false;
+
+        for (var i = 0; i < $('.qty').length; i++) {                      
+            if ($('.qty')[i].value != '') {                
+                args.IsValid = true;
+            }
+            else if (($('.qty')[i].value == null) && ($('.qty')[i].value == ''))
+            {
+                               
+            }
+        }        
     }
 </script>   
     <div style=" width: 500px; padding-left:350px; height:100%; ">
-        <form action="" id="customerForm">
+        <form action="" id="customerForm">        
             <h1>
                 Please Enter Your Details
             </h1>
@@ -52,7 +68,7 @@
                     <div>
                         <p><asp:Label ID="LCountry" runat="server" class="orange" meta:resourcekey="LCountryResource1"></asp:Label><span class="red">*</span></p>
                         <asp:TextBox ID="Country" runat="server" size="30" class="inputBoxStyle" meta:resourcekey="CountryResource2"></asp:TextBox>
-                        <asp:RequiredFieldValidator Display="Dynamic" id="RequiredFieldValidatorCountry" runat="server" ErrorMessage="RequiredFieldValidatorCountryResource1.ErrorMessage" SetFocusOnError="True" CssClass="red" ControlToValidate="Country" meta:resourcekey="RequiredFieldValidatorCountryResource1"></asp:RequiredFieldValidator>                                                                                               
+                        <asp:RequiredFieldValidator Display="Dynamic" id="RequiredFieldValidatorCountry" runat="server" ErrorMessage="RequiredFieldValidatorCountryResource1.ErrorMessage" SetFocusOnError="True" CssClass="red" ControlToValidate="Country" meta:resourcekey="RequiredFieldValidatorCountryResource1"/>
                     </div>
             </div>
             <div style="">
@@ -61,43 +77,46 @@
             </h1>
         <asp:SqlDataSource ID="SqlDataSource1" runat="server" 
                 ConnectionString="<%$ ConnectionStrings:trainingConnectionString %>" 
-                SelectCommand="SELECT * FROM [Products]"></asp:SqlDataSource>        
-        <asp:Repeater ID="Repeater1" runat="server" DataSourceID="SqlDataSource1">
+                SelectCommand="SELECT Name, ProductDescription, Price FROM [Products]"></asp:SqlDataSource>        
+        <asp:Repeater ID="ProductListRepeater" runat="server" DataSourceID="SqlDataSource1" >
          <HeaderTemplate>
           <table style=" width:300px;">            
         </HeaderTemplate>
          <ItemTemplate>
           <tr>
-            <td class="ItemTemplateName">
-              <asp:Label runat="server" ID="Label1" Text='<%# Eval("Name") %>' />            
+            <td class="Name">
+              <asp:Label runat="server" ID="ProductName" Text='<%# Eval("Name") %>' />            
             </td>                 
             </tr>
             <tr>
-            <td class="ItemTemplatePrice">
+            <td class="Price">
              For <span style=" color:#0069B3"> &#8364; <asp:Label runat="server" ID="Label4" Text='<%# Eval("Price") %>' /></span>
             </td>
             </tr>
             <tr>
             <td>
-              <asp:Label runat="server" ID="Label2" Text='<%# Eval("ItemDescription") %>' />
+              <asp:Label runat="server" ID="ProductDescription" Text='<%# Eval("ProductDescription") %>' />
             </td>            
           </tr>
           <tr>
-            <td class="ItemTemplateQuantity">
-                 <asp:Label ID="Label3" runat="server" meta:resourcekey="Quantity"></asp:Label>
-                 <asp:TextBox ID="qty" runat="server" size="30" class="inputBoxStyle qty"></asp:TextBox>
+            <td class="Quantity">
+                 <asp:Label ID="ProductQuantity" runat="server" meta:resourcekey="Quantity"></asp:Label>
+                 <asp:TextBox ID="QuantityValue" runat="server" size="30" class="inputBoxStyle qty "></asp:TextBox>
+                 <asp:CustomValidator CssClass="red" ID="checkProductValidator" runat="server" ControlToValidate="qty" ValidateEmptyText="true" ErrorMessage="enter quantity" ClientValidationFunction="CheckQuantity" />
+                 <asp:RegularExpressionValidator CssClass="red" ValidationExpression="[0-9]" ControlToValidate="qty" ID="RegularExpressionValidator1" runat="server" ErrorMessage="Please use a number ranging from 1-9"></asp:RegularExpressionValidator>                 
             </td>
           </tr>
         </ItemTemplate>
         <FooterTemplate>
           </table>
         </FooterTemplate>
-        </asp:Repeater>
+        </asp:Repeater>         
         </div>
         <div>
             <p>
                 <asp:Button ID="Submit" runat="server" OnClick="sunmitbtn_Click" class="button" meta:resourcekey="SubmitResource1"/>
-                <asp:Button ID="Reset" runat="server" UseSubmitBehavior="False" OnClientClick="ClearAllControls(this.form);" class="button" meta:resourcekey="ResetResource1" />                        
+                <asp:Button ID="Reset" runat="server" UseSubmitBehavior="False" OnClientClick="ClearAllControls(this.form);" class="button" meta:resourcekey="ResetResource1" />                                                                                                           
+                <asp:Button ID="Button2" runat="server" UseSubmitBehavior="False" OnClick="CopyTo_Clicked" class="button" Text="test push to array" />                                        
             </p> 
         </div>     
         </form>         
