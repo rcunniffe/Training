@@ -67,18 +67,17 @@ namespace training_rc
         ///   <c>true</c> if [is valid product]; otherwise, <c>false</c>.
         /// </returns>
         protected bool isValidProduct()
-        {           
-            bool isvalidProduct = false;
+        {
+            bool IsProductValid = false;
             for (int i = 0; i < ProductListRepeater.Items.Count; i++)
-            {              
-                bool mytest = String.IsNullOrEmpty(((TextBox)ProductListRepeater.Controls[i+1].FindControl("QuantityValue")).Text);
-                if (mytest != true)
+            {                              
+                if (String.IsNullOrEmpty(((TextBox)ProductListRepeater.Controls[i+1].FindControl("QuantityValue")).Text) != true)
                 {
-                    isvalidProduct = true;
+                    IsProductValid = true;
                 }
                 else { }
             }
-            return isvalidProduct;
+            return IsProductValid;
         }
     }
 }
