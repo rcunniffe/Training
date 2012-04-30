@@ -71,11 +71,11 @@ namespace training_rc
             bool IsProductValid = false;
             for (int i = 0; i < ProductListRepeater.Items.Count; i++)
             {                              
-                if (String.IsNullOrEmpty(((TextBox)ProductListRepeater.Controls[i+1].FindControl("QuantityValue")).Text) != true)
+                if (!(String.IsNullOrEmpty(((TextBox)ProductListRepeater.Controls[i+1].FindControl("QuantityValue")).Text)))
                 {
                     IsProductValid = true;
                 }
-                else { }
+               
             }
             return IsProductValid;
         }
