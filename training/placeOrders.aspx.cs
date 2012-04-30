@@ -25,7 +25,7 @@ namespace training_rc
         {                       
                 try
                 {
-                    if (isValid())
+                    if ((isValid()) && (isValidProduct()))
                     {
                         using (SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["trainingConnectionString"].ConnectionString))
                         {
@@ -60,19 +60,19 @@ namespace training_rc
             return (!(string.IsNullOrWhiteSpace(FirstName.Text)) && !(string.IsNullOrWhiteSpace(Surname.Text)) && !(string.IsNullOrWhiteSpace(Address1.Text)) && !(string.IsNullOrWhiteSpace(PostCode.Text)) && !(string.IsNullOrWhiteSpace(City.Text)) && !(string.IsNullOrWhiteSpace(Country.Text)));
         }
 
+        /// <summary>
+        /// Determines whether [is valid product].
+        /// </summary>
+        /// <returns>
+        ///   <c>true</c> if [is valid product]; otherwise, <c>false</c>.
+        /// </returns>
         protected bool isValidProduct()
-        {
-            ProductListRepeater.Controls[1].FindControl("ProductName");
-            ProductListRepeater.Controls[1].FindControl("ProductQuantity");
-            ProductListRepeater.Controls[1].FindControl("MainContent_ProductListRepeater_ProductQuantity_0");
+        {           
             bool isvalidProduct = false;
             for (int i = 0; i < ProductListRepeater.Items.Count; i++)
-            {
-                var test = ((Label)ProductListRepeater.Controls[i].FindControl("qty")).Text;
-
-                String.IsNullOrEmpty(((Label)ProductListRepeater.Controls[i].FindControl("Label1")).Text);
-                bool mytest = String.IsNullOrEmpty(((Label)ProductListRepeater.Controls[i].FindControl("Label1")).Text);
-                if (mytest == true)
+            {              
+                bool mytest = String.IsNullOrEmpty(((TextBox)ProductListRepeater.Controls[i+1].FindControl("QuantityValue")).Text);
+                if (mytest != true)
                 {
                     isvalidProduct = true;
                 }
@@ -80,8 +80,5 @@ namespace training_rc
             }
             return isvalidProduct;
         }
-
-       
-        
     }
 }

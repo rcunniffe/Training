@@ -75,10 +75,10 @@
             <h1>
                 Please Choose your products
             </h1>
-        <asp:SqlDataSource ID="SqlDataSource1" runat="server" 
+        <asp:SqlDataSource ID="ProductListingDataSource" runat="server" 
                 ConnectionString="<%$ ConnectionStrings:trainingConnectionString %>" 
                 SelectCommand="SELECT Name, ProductDescription, Price FROM [Products]"></asp:SqlDataSource>        
-        <asp:Repeater ID="ProductListRepeater" runat="server" DataSourceID="SqlDataSource1" >
+        <asp:Repeater ID="ProductListRepeater" runat="server" DataSourceID="ProductListingDataSource" >
          <HeaderTemplate>
           <table style=" width:300px;">            
         </HeaderTemplate>
@@ -102,8 +102,8 @@
             <td class="Quantity">
                  <asp:Label ID="ProductQuantity" runat="server" meta:resourcekey="Quantity"></asp:Label>
                  <asp:TextBox ID="QuantityValue" runat="server" size="30" class="inputBoxStyle qty "></asp:TextBox>
-                 <asp:CustomValidator CssClass="red" ID="checkProductValidator" runat="server" ControlToValidate="qty" ValidateEmptyText="true" ErrorMessage="enter quantity" ClientValidationFunction="CheckQuantity" />
-                 <asp:RegularExpressionValidator CssClass="red" ValidationExpression="[0-9]" ControlToValidate="qty" ID="RegularExpressionValidator1" runat="server" ErrorMessage="Please use a number ranging from 1-9"></asp:RegularExpressionValidator>                 
+                 <asp:CustomValidator CssClass="red" ID="checkProductValidator" runat="server" ControlToValidate="QuantityValue" ValidateEmptyText="true" ErrorMessage="enter quantity" ClientValidationFunction="CheckQuantity" />
+                 <asp:RegularExpressionValidator CssClass="red" ValidationExpression="[0-9]" ControlToValidate="QuantityValue" ID="RegularExpressionValidator1" runat="server" ErrorMessage="Please use a number ranging from 1-9"></asp:RegularExpressionValidator>                 
             </td>
           </tr>
         </ItemTemplate>
@@ -115,8 +115,7 @@
         <div>
             <p>
                 <asp:Button ID="Submit" runat="server" OnClick="sunmitbtn_Click" class="button" meta:resourcekey="SubmitResource1"/>
-                <asp:Button ID="Reset" runat="server" UseSubmitBehavior="False" OnClientClick="ClearAllControls(this.form);" class="button" meta:resourcekey="ResetResource1" />                                                                                                           
-                <asp:Button ID="Button2" runat="server" UseSubmitBehavior="False" OnClick="CopyTo_Clicked" class="button" Text="test push to array" />                                        
+                <asp:Button ID="Reset" runat="server" UseSubmitBehavior="False" OnClientClick="ClearAllControls(this.form);" class="button" meta:resourcekey="ResetResource1" />                                                                                                                           
             </p> 
         </div>     
         </form>         
