@@ -52,7 +52,6 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="placeOrders.aspx" />
-    <Content Include="repeaterTest.aspx" />
     <Content Include="Styles\Site.css" />
     <Content Include="Default.aspx" />
     <Content Include="Global.asax" />
@@ -87,13 +86,6 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="repeaterTest.aspx.cs">
-      <DependentUpon>repeaterTest.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="repeaterTest.aspx.designer.cs">
-      <DependentUpon>repeaterTest.aspx</DependentUpon>
-    </Compile>
     <Compile Include="Site.Master.cs">
       <DependentUpon>Site.Master</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
