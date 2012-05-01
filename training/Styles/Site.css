@@ -52,6 +52,7 @@ h1
     font-size: 1.6em;
     padding-bottom: 0px;
     margin-bottom: 0px;
+    text-align:left;
 }
 
 h2
@@ -323,3 +324,24 @@ div.accountInfo
 }
 
 .red{color:#fa3a3a;}
+.qty
+{
+    width:50px;
+}
+.Name
+{
+font-size:14px;
+font-weight:bold;
+color:#1b1b1b; 
+}
+.Price
+{
+font-size:14px;
+color:#1b1b1b; 
+}
+.Quantity
+{
+    background-color:#fff;
+    float:left;
+    padding-bottom:20px;
+}

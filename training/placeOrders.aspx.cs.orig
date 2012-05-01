@@ -25,7 +25,11 @@ namespace training_rc
         {                       
                 try
                 {
+<<<<<<< HEAD
+                    if (isValid())
+=======
                     if ((isValid()) && (isValidProduct()))
+>>>>>>> CreateProducts
                     {
                         using (SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["trainingConnectionString"].ConnectionString))
                         {
@@ -57,6 +61,9 @@ namespace training_rc
         /// <returns></returns>
         protected bool isValid()
         {
+<<<<<<< HEAD
+            return ((string.IsNullOrWhiteSpace(FirstName.Text)) && (string.IsNullOrWhiteSpace(Surname.Text)) && (string.IsNullOrWhiteSpace(Address1.Text)) && (string.IsNullOrWhiteSpace(PostCode.Text)) && (string.IsNullOrWhiteSpace(City.Text)) && (string.IsNullOrWhiteSpace(Country.Text)));           
+=======
             return (!(string.IsNullOrWhiteSpace(FirstName.Text)) && !(string.IsNullOrWhiteSpace(Surname.Text)) && !(string.IsNullOrWhiteSpace(Address1.Text)) && !(string.IsNullOrWhiteSpace(PostCode.Text)) && !(string.IsNullOrWhiteSpace(City.Text)) && !(string.IsNullOrWhiteSpace(Country.Text)));
         }
 
@@ -78,6 +85,7 @@ namespace training_rc
                
             }
             return IsProductValid;
+>>>>>>> CreateProducts
         }
     }
 }
