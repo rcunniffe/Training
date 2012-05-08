@@ -41,7 +41,8 @@ namespace training_rc
                         {
                             conn.Open();
                             String query = @"
-                            BEGIN TRAN
+                            BEGIN TRY
+                            BEGIN TRANSACTION
                             INSERT INTO person (firstname,surname)
                             VALUES(@firstname,@surname) 
                             declare @personID as int 
@@ -81,13 +82,14 @@ namespace training_rc
                             VALUES (@personID)                            
                             declare @orderID as int 
                             SET @orderID = SCOPE_IDENTITY()
-
-                            SELECT @intErrorCode = @@ERROR
-                            IF (@intErrorCode <> 0) BEGIN
-                            PRINT 'Unexpected error occurred!'
-                            ROLLBACK TRAN
-                            END
-                            COMMIT TRAN                                                    
+                            
+                            COMMIT TRAN
+                            END TRY
+                            BEGIN CATCH
+                            IF @@TRANCOUNT > 0
+                            ROLLBACK TRAN --RollBack in case of Error
+                            END CATCH
+                                                                                
                             select @orderID";
                             SqlCommand cmd = new SqlCommand(query, conn);
                             cmd.Parameters.Add(new SqlParameter("@firstname", SqlDbType.VarChar, 50, "firstname")).Value = FirstName.Text;
@@ -113,8 +115,7 @@ namespace training_rc
                                 int insertproductsResults = Convert.ToInt32(insertproducts.ExecuteNonQuery());
                                 if (insertproductsResults != 1)
                                 {
-                                    throw new System.ArgumentException("An error occured when saving an order");
-                                    scope.Dispose();
+                                    throw new System.ArgumentException("An error occured when saving an order");                                    
                                 }
                             }
                             scope.Complete();
@@ -125,8 +126,7 @@ namespace training_rc
                 }
                 catch (Exception ex)
                 {
-                    Response.Write(String.Format("<script type='text/javascript'>alert({0});</script>", ex.ToString()));
-                    scope.Dispose();
+                    Response.Write(String.Format("<script type='text/javascript'>alert({0});</script>", ex.ToString()));                    
                 }
             }  
         }
