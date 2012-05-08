@@ -24,7 +24,6 @@ namespace training_rc
             public int productID { get; set; }
             public int quantityValue { get; set; }
         }
-
         /// <summary>
         /// Handles the Click event of the sunmitbtn control.
         /// </summary>
@@ -42,6 +41,7 @@ namespace training_rc
                         {
                             conn.Open();
                             String query = @"
+                            BEGIN TRAN
                             INSERT INTO person (firstname,surname)
                             VALUES(@firstname,@surname) 
                             declare @personID as int 
@@ -82,8 +82,15 @@ namespace training_rc
                             declare @orderID as int 
                             SET @orderID = SCOPE_IDENTITY()
 
+                            SELECT @intErrorCode = @@ERROR
+                            IF (@intErrorCode <> 0) GOTO PROBLEM
+                            COMMIT TRAN
+                        
+                            IF (@intErrorCode <> 0) BEGIN
+                            PRINT 'Unexpected error occurred!'
+                            ROLLBACK TRAN
+                            END
                             select @orderID";
-
                             SqlCommand cmd = new SqlCommand(query, conn);
                             cmd.Parameters.Add(new SqlParameter("@firstname", SqlDbType.VarChar, 50, "firstname")).Value = FirstName.Text;
                             cmd.Parameters.Add(new SqlParameter("@surname", SqlDbType.VarChar, 50, "surname")).Value = Surname.Text;
@@ -111,12 +118,10 @@ namespace training_rc
                                     throw new System.ArgumentException("An error occured when saving an order");
                                     scope.Dispose();
                                 }
-
                             }
                             scope.Complete();
                             Response.Write("<script type='text/javascript'>alert('SuccessFul Entry');</script>");
-                        }
-                    
+                        }                    
                     }
                     else { Response.Write("<script type='text/javascript'>alert('sorry the data you entered was not valid');</script>"); scope.Dispose();}
                 }
@@ -127,7 +132,6 @@ namespace training_rc
                 }
             }  
         }
-
         /// <summary>
         /// Validates the Form on placeOrders.aspx
         /// </summary>
@@ -135,9 +139,7 @@ namespace training_rc
         protected bool isValid()
         {
             return (!(string.IsNullOrWhiteSpace(FirstName.Text)) && !(string.IsNullOrWhiteSpace(Surname.Text)) && !(string.IsNullOrWhiteSpace(Address1.Text)) && !(string.IsNullOrWhiteSpace(PostCode.Text)) && !(string.IsNullOrWhiteSpace(City.Text)) && !(string.IsNullOrWhiteSpace(Country.Text)));
-        }
-
-       
+        }       
         /// <summary>
         /// Creating a list of object type product. Adding to the list each time a quantity has been given for a product
         /// </summary>
@@ -156,7 +158,6 @@ namespace training_rc
                 }                
             return ProductList;
         }
-
         /// <summary>
         /// Determines whether [is valid product].
         /// </summary>
@@ -171,8 +172,7 @@ namespace training_rc
                 if (!(String.IsNullOrEmpty(((TextBox)ProductListRepeater.Controls[i+1].FindControl("QuantityValue")).Text)))
                 {
                     IsProductValid = true;
-                }
-               
+                }               
             }
             return IsProductValid;
         }
