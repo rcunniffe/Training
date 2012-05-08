@@ -1,14 +1,15 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Configuration;
+using System.Data;
+using System.Data.SqlClient;
 using System.Linq;
+using System.Reflection;
+using System.Resources;
+using System.Transactions;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
-using System.Data.SqlClient;
-using System.Data;
-using System.Configuration;
-using System.Reflection;
-using System.Resources;
 
 
 namespace training_rc
@@ -30,11 +31,13 @@ namespace training_rc
         /// <param name="sender">The source of the event.</param>
         /// <param name="e">The <see cref="System.EventArgs"/> instance containing the event data.</param>
         public void sunmitbtn_Click(object sender, EventArgs e)
-        {            
+        {
+            using (TransactionScope scope = new TransactionScope())
+            {
                 try
                 {
                     if ((isValid()) && (isValidProduct()))
-                    {
+                    {                       
                         using (SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["trainingConnectionString"].ConnectionString))
                         {
                             conn.Open();
@@ -80,8 +83,8 @@ namespace training_rc
                             SET @orderID = SCOPE_IDENTITY()
 
                             select @orderID";
-                            
-                            SqlCommand cmd = new SqlCommand(query, conn);                            
+
+                            SqlCommand cmd = new SqlCommand(query, conn);
                             cmd.Parameters.Add(new SqlParameter("@firstname", SqlDbType.VarChar, 50, "firstname")).Value = FirstName.Text;
                             cmd.Parameters.Add(new SqlParameter("@surname", SqlDbType.VarChar, 50, "surname")).Value = Surname.Text;
                             cmd.Parameters.Add(new SqlParameter("@address1", SqlDbType.VarChar, 50, "address1")).Value = Address1.Text;
@@ -90,14 +93,14 @@ namespace training_rc
                             cmd.Parameters.Add(new SqlParameter("@country", SqlDbType.VarChar, 50, "country")).Value = Country.Text;
                             cmd.Parameters.Add(new SqlParameter("@city", SqlDbType.VarChar, 50, "city")).Value = City.Text;
                             cmd.Parameters.Add(new SqlParameter("@postcode", SqlDbType.VarChar, 50, "postcode")).Value = PostCode.Text;
-                            int orderID = Convert.ToInt32(cmd.ExecuteScalar());                                                 
+                            int orderID = Convert.ToInt32(cmd.ExecuteScalar());
 
-                            var ProductList = GetValues();                           
+                            var ProductList = GetValues();
                             for (int i = 0; i < ProductList.Count; i++)
                             {
                                 String productInsert = @"
                                 INSERT INTO [orderline] (productID,orderID,quantity)
-                                VALUES(@productID,@orderID,@quantity)";                              
+                                VALUES(@productID,@orderID,@quantity)";
                                 SqlCommand insertproducts = new SqlCommand(productInsert, conn);
                                 insertproducts.Parameters.Add(new SqlParameter("@productID", SqlDbType.VarChar, 50, "productID")).Value = ProductList[i].productID;
                                 insertproducts.Parameters.Add(new SqlParameter("@orderID", SqlDbType.VarChar, 50, "orderID")).Value = orderID;
@@ -106,19 +109,23 @@ namespace training_rc
                                 if (insertproductsResults != 1)
                                 {
                                     throw new System.ArgumentException("An error occured when saving an order");
+                                    scope.Dispose();
                                 }
 
-                            }                           
-
+                            }
+                            scope.Complete();
                             Response.Write("<script type='text/javascript'>alert('SuccessFul Entry');</script>");
                         }
+                    
                     }
-                    else { Response.Write("<script type='text/javascript'>alert('sorry the data you entered was not valid');</script>"); }
+                    else { Response.Write("<script type='text/javascript'>alert('sorry the data you entered was not valid');</script>"); scope.Dispose();}
                 }
                 catch (Exception ex)
                 {
                     Response.Write(String.Format("<script type='text/javascript'>alert({0});</script>", ex.ToString()));
-                }                    
+                    scope.Dispose();
+                }
+            }  
         }
 
         /// <summary>
