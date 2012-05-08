@@ -15,6 +15,14 @@ namespace training_rc
 {
     public partial class PlaceOrders : System.Web.UI.Page
     {
+        /// <summary>
+        /// Creating a product class to store the values of each product selected by user
+        /// </summary>
+        private class product
+        {
+            public int productID { get; set; }
+            public int quantityValue { get; set; }
+        }
 
         /// <summary>
         /// Handles the Click event of the sunmitbtn control.
@@ -22,8 +30,7 @@ namespace training_rc
         /// <param name="sender">The source of the event.</param>
         /// <param name="e">The <see cref="System.EventArgs"/> instance containing the event data.</param>
         public void sunmitbtn_Click(object sender, EventArgs e)
-        {
-            GetValues();
+        {            
                 try
                 {
                     if ((isValid()) && (isValidProduct()))
@@ -83,7 +90,7 @@ namespace training_rc
                             cmd.Parameters.Add(new SqlParameter("@country", SqlDbType.VarChar, 50, "country")).Value = Country.Text;
                             cmd.Parameters.Add(new SqlParameter("@city", SqlDbType.VarChar, 50, "city")).Value = City.Text;
                             cmd.Parameters.Add(new SqlParameter("@postcode", SqlDbType.VarChar, 50, "postcode")).Value = PostCode.Text;
-                            int orderID = cmd.ExecuteScalar();                                                 
+                            int orderID = Convert.ToInt32(cmd.ExecuteScalar());                                                 
 
                             var ProductList = GetValues();                           
                             for (int i = 0; i < ProductList.Count; i++)
@@ -91,15 +98,16 @@ namespace training_rc
                                 String productInsert = @"
                                 INSERT INTO [orderline] (productID,orderID,quantity)
                                 VALUES(@productID,@orderID,@quantity)";                              
-
                                 SqlCommand insertproducts = new SqlCommand(productInsert, conn);
-
                                 insertproducts.Parameters.Add(new SqlParameter("@productID", SqlDbType.VarChar, 50, "productID")).Value = ProductList[i].productID;
                                 insertproducts.Parameters.Add(new SqlParameter("@orderID", SqlDbType.VarChar, 50, "orderID")).Value = orderID;
-                                insertproducts.Parameters.Add(new SqlParameter("@quantity", SqlDbType.VarChar, 50, "QuantityValue")).Value = ProductList[i].QuantityValue;
-                                //Console.WriteLine(ProductList[i].description);
-                                //Console.WriteLine(ProductList[i].name);
-                                insertproducts.ExecuteNonQuery();
+                                insertproducts.Parameters.Add(new SqlParameter("@quantity", SqlDbType.VarChar, 50, "QuantityValue")).Value = ProductList[i].quantityValue;
+                                int insertproductsResults = Convert.ToInt32(insertproducts.ExecuteNonQuery());
+                                if (insertproductsResults != 1)
+                                {
+                                    throw new System.ArgumentException("An error occured when saving an order");
+                                }
+
                             }                           
 
                             Response.Write("<script type='text/javascript'>alert('SuccessFul Entry');</script>");
@@ -122,15 +130,7 @@ namespace training_rc
             return (!(string.IsNullOrWhiteSpace(FirstName.Text)) && !(string.IsNullOrWhiteSpace(Surname.Text)) && !(string.IsNullOrWhiteSpace(Address1.Text)) && !(string.IsNullOrWhiteSpace(PostCode.Text)) && !(string.IsNullOrWhiteSpace(City.Text)) && !(string.IsNullOrWhiteSpace(Country.Text)));
         }
 
-        /// <summary>
-        /// Creating a product class to store the values of each product selected by user
-        /// </summary>
-        private class product
-        {            
-            public int productID { get; set; }
-            public int quantityValue { get; set; }
-        }
-
+       
         /// <summary>
         /// Creating a list of object type product. Adding to the list each time a quantity has been given for a product
         /// </summary>
