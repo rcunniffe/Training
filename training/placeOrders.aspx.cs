@@ -83,13 +83,11 @@ namespace training_rc
                             SET @orderID = SCOPE_IDENTITY()
 
                             SELECT @intErrorCode = @@ERROR
-                            IF (@intErrorCode <> 0) GOTO PROBLEM
-                            COMMIT TRAN
-                        
                             IF (@intErrorCode <> 0) BEGIN
                             PRINT 'Unexpected error occurred!'
                             ROLLBACK TRAN
                             END
+                            COMMIT TRAN                                                    
                             select @orderID";
                             SqlCommand cmd = new SqlCommand(query, conn);
                             cmd.Parameters.Add(new SqlParameter("@firstname", SqlDbType.VarChar, 50, "firstname")).Value = FirstName.Text;
