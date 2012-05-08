@@ -78,7 +78,7 @@
         <asp:SqlDataSource ID="ProductListingDataSource" runat="server" 
                 ConnectionString="<%$ ConnectionStrings:trainingConnectionString %>" 
                 
-                    SelectCommand="SELECT [price], [description], [name], [productID] FROM [product]"></asp:SqlDataSource>        
+                    SelectCommand="SELECT  [productID], [name], [description], [price] FROM [product]"></asp:SqlDataSource>        
         <asp:Repeater ID="ProductListRepeater" runat="server" DataSourceID="ProductListingDataSource" >
          <HeaderTemplate>
           <table style=" width:300px;">            
@@ -103,8 +103,7 @@
           <tr>
             <td class="Quantity">
                  <asp:Label ID="quantity" runat="server" meta:resourcekey="Quantity"></asp:Label>
-                 <asp:TextBox ID="QuantityValue" runat="server" size="30" class="inputBoxStyle qty "></asp:TextBox>
-                 <asp:CompareValidator Type="Integer" ID="myvalidator" runat="server" ErrorMessage="blah" ControlToValidate="QuantityValue" Operator="DataTypeCheck"/>                 
+                 <asp:TextBox ID="QuantityValue" runat="server" size="30" class="inputBoxStyle qty "></asp:TextBox>                 
                  <asp:RegularExpressionValidator CssClass="red" ValidationExpression="[\S0-9\S]" ControlToValidate="QuantityValue" ID="RegularExpressionValidator1" runat="server" ErrorMessage="Please use a number ranging from 1-9 and do not add a space"></asp:RegularExpressionValidator>
             </td>
           </tr>
