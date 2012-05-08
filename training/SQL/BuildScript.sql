@@ -65,7 +65,7 @@ CREATE TABLE [personaddress]
 GO
 CREATE TABLE [order]
 (	orderID int IDENTITY(1,1) Primary Key,	
-	personaddressID int FOREIGN KEY REFERENCES personaddress(personaddressID),	
+	personID int FOREIGN KEY REFERENCES personaddress(personaddressID),	
     );
 GO  
 CREATE TABLE [orderline]

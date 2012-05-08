@@ -77,7 +77,8 @@
             </h1>
         <asp:SqlDataSource ID="ProductListingDataSource" runat="server" 
                 ConnectionString="<%$ ConnectionStrings:trainingConnectionString %>" 
-                SelectCommand="SELECT Name, ProductDescription, Price FROM [Products]"></asp:SqlDataSource>        
+                
+                    SelectCommand="SELECT [price], [description], [name], [productID] FROM [product]"></asp:SqlDataSource>        
         <asp:Repeater ID="ProductListRepeater" runat="server" DataSourceID="ProductListingDataSource" >
          <HeaderTemplate>
           <table style=" width:300px;">            
@@ -85,25 +86,27 @@
          <ItemTemplate>
           <tr>
             <td class="Name">
-              <asp:Label runat="server" ID="ProductName" Text='<%# Eval("Name") %>' />            
+              <asp:Label runat="server" ID="name" Text='<%# Eval("name") %>' />            
             </td>                 
             </tr>
             <tr>
             <td class="Price">
-             For <span style=" color:#0069B3"> &#8364; <asp:Label runat="server" ID="Label4" Text='<%# Eval("Price") %>' /></span>
+             For <span style=" color:#0069B3"> &#8364; <asp:Label runat="server" ID="Label4" Text='<%# Eval("price") %>' /></span>
             </td>
             </tr>
             <tr>
             <td>
-              <asp:Label runat="server" ID="ProductDescription" Text='<%# Eval("ProductDescription") %>' />
+              <asp:Label runat="server" ID="description" Text='<%# Eval("description") %>' />
+              <asp:Label Visible="false" runat="server" ID="productID" Text='<%# Eval("productID") %>' />
             </td>            
           </tr>
           <tr>
             <td class="Quantity">
-                 <asp:Label ID="ProductQuantity" runat="server" meta:resourcekey="Quantity"></asp:Label>
+                 <asp:Label ID="quantity" runat="server" meta:resourcekey="Quantity"></asp:Label>
                  <asp:TextBox ID="QuantityValue" runat="server" size="30" class="inputBoxStyle qty "></asp:TextBox>
-                 <asp:CustomValidator CssClass="red" ID="checkProductValidator" runat="server" ControlToValidate="QuantityValue" ValidateEmptyText="true" ErrorMessage="enter quantity" ClientValidationFunction="CheckQuantity" />
-                 <asp:RegularExpressionValidator CssClass="red" ValidationExpression="[0-9]" ControlToValidate="QuantityValue" ID="RegularExpressionValidator1" runat="server" ErrorMessage="Please use a number ranging from 1-9"></asp:RegularExpressionValidator>                 
+                 <asp:CompareValidator Type="Integer" ID="myvalidator" runat="server" ErrorMessage="blah" ControlToValidate="QuantityValue" Operator="DataTypeCheck"    />
+                 <%-- %><asp:CustomValidator CssClass="red" ID="checkProductValidator" runat="server" ControlToValidate="QuantityValue" ValidateEmptyText="true" ErrorMessage="enter quantity" ClientValidationFunction="CheckQuantity" />--%>
+                <asp:RegularExpressionValidator CssClass="red" ValidationExpression="[0-9]" ControlToValidate="QuantityValue" ID="RegularExpressionValidator1" runat="server" ErrorMessage="Please use a number ranging from 1-9"></asp:RegularExpressionValidator>
             </td>
           </tr>
         </ItemTemplate>
@@ -115,9 +118,10 @@
         <div>
             <p>
                 <asp:Button ID="Submit" runat="server" OnClick="sunmitbtn_Click" class="button" meta:resourcekey="SubmitResource1"/>
-                <asp:Button ID="Reset" runat="server" UseSubmitBehavior="False" OnClientClick="ClearAllControls(this.form);" class="button" meta:resourcekey="ResetResource1" />                                                                                                                           
+                <asp:Button ID="Reset" runat="server" UseSubmitBehavior="False" OnClientClick="ClearAllControls(this.form);" class="button" meta:resourcekey="ResetResource1" />                                
             </p> 
-        </div>     
+        </div>            
+                
         </form>         
     </div>          
 </asp:Content>
