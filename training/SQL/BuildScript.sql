@@ -18,15 +18,6 @@ CREATE TABLE [person]
 	surname VARCHAR (50) NOT NULL,
     );
 GO
-use training
-GO
-CREATE TABLE [address]
-(	addressID int IDENTITY(1,1) Primary Key,	
-	address1 VARCHAR (50) NOT NULL,
-	address2 VARCHAR (50) NULL,
-	address3 VARCHAR (50) NULL,
-    );
-GO
 CREATE TABLE [addresstype]
 (	addresstypeID int IDENTITY(1,1) Primary Key,
 	code VARCHAR (50) NOT NULL,	
@@ -44,10 +35,19 @@ CREATE TABLE [city]
 	countryID int FOREIGN KEY REFERENCES country(countryID),
 	);
 GO
+use training
+GO
+CREATE TABLE [address]
+(	addressID int IDENTITY(1,1) Primary Key,	
+	address1 VARCHAR (50) NOT NULL,
+	address2 VARCHAR (50) NULL,
+	address3 VARCHAR (50) NULL,
+	cityID int FOREIGN KEY REFERENCES city(cityID),	
+    );
+GO
 CREATE TABLE [postcode]
 (	postcodeID int IDENTITY(1,1) Primary Key,	
-	postcode VARCHAR (50) NOT NULL,
-	cityID int FOREIGN KEY REFERENCES city(cityID),	
+	postcode VARCHAR (50) NOT NULL,	
     );
 GO
 CREATE TABLE [product]
@@ -60,8 +60,7 @@ CREATE TABLE [personaddress]
 (	personaddressID int IDENTITY(1,1) Primary Key,
 	personID int FOREIGN KEY REFERENCES person(personID),
 	addressID int FOREIGN KEY REFERENCES [address](addressID),
-	addresstypeID int FOREIGN KEY REFERENCES addresstype(addresstypeID),
-	cityID int FOREIGN KEY REFERENCES city(cityID),	
+	addresstypeID int FOREIGN KEY REFERENCES addresstype(addresstypeID),	
     );
 GO
 CREATE TABLE [order]
@@ -73,6 +72,6 @@ CREATE TABLE [orderline]
 (	orderlineID int IDENTITY(1,1) Primary Key,	
 	orderID int FOREIGN KEY REFERENCES [order](orderID),
 	productID int FOREIGN KEY REFERENCES product(productID),
-	quantity float,	
+	quantity int,	
     );
 GO 
