@@ -336,12 +336,48 @@ color:#1b1b1b;
 }
 .Price
 {
-font-size:14px;
-color:#1b1b1b; 
+font-size:24px;
 }
 .Quantity
 {
     background-color:#fff;
-    float:left;
-    padding-bottom:20px;
+    padding-bottom:5px;
+    width:40px;
+    margin-top:20px;
+}
+.description
+{
+    margin-bottom:20px;
+}
+.webform-component-textfield, .webform-component-email {
+width: 30%;
+margin-right: 4%;
+float: left;
+}
+.form-item, .form-actions {
+margin-top: 1em;
+margin-bottom: 1em;
+}
+input{
+background-color: #E9E9E9;
+border: 1px solid #C6C6C6;
+padding: 5px;
+margin-bottom: 15px;
+}
+h1 
+{
+    width:500px;
+}
+.prod
+{
+border-right: 2px dotted #EBEAEF;
+border-top: 2px dotted #EBEAEF;
+border-left: 2px dotted #EBEAEF;
+border-bottom: 2px dotted #EBEAEF;
+float: left;
+width:250px;
+height:250px;
+padding-left:10px;
+padding-top:10px;
+margin:10px;
 }

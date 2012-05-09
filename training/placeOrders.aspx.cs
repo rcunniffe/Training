@@ -31,67 +31,17 @@ namespace training_rc
         /// <param name="e">The <see cref="System.EventArgs"/> instance containing the event data.</param>
         public void sunmitbtn_Click(object sender, EventArgs e)
         {
-            using (TransactionScope scope = new TransactionScope())
-            {
+            
                 try
                 {
                     if ((isValid()) && (isValidProduct()))
-                    {                       
+                    {
+                        using(TransactionScope scope = new TransactionScope())
                         using (SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["trainingConnectionString"].ConnectionString))
                         {
                             conn.Open();
-                            String query = @"
-                            BEGIN TRY
-                            BEGIN TRANSACTION
-                            INSERT INTO person (firstname,surname)
-                            VALUES(@firstname,@surname) 
-                            declare @personID as int 
-                            SET @personID = SCOPE_IDENTITY() 
-
-                            INSERT INTO addresstype(code,[description]) 
-                            VALUES ('p','primary address') 
-                            declare @addresstypeID as int 
-                            SET @addresstypeID = SCOPE_IDENTITY() 
-                            
-                            INSERT INTO country(country) 
-                            VALUES (@country) 
-                            declare @countryID as int 
-                            SET @countryID = SCOPE_IDENTITY() 
-
-                            INSERT INTO city(city,countryID) 
-                            VALUES (@city,@countryID) 
-                            declare @cityID as int 
-                            SET @cityID = SCOPE_IDENTITY() 
-
-                            INSERT INTO [address](address1,address2,address3, cityID) 
-                            VALUES (@address1,@address2,@address3, @cityID) 
-                            declare @addressID as int 
-                            SET @addressID = SCOPE_IDENTITY() 
-                            
-                            INSERT INTO postcode(postcode) 
-                            VALUES ('D4') 
-                            declare @postcodeID as int 
-                            SET @postcodeID = SCOPE_IDENTITY() 
-    
-                            INSERT INTO personaddress(personID,addressID,addresstypeID) 
-                            VALUES (@personID,@addressID,@addresstypeID) 
-                            declare @personaddressID as int 
-                            SET @personaddressID = SCOPE_IDENTITY() 
-
-                            INSERT INTO [order](personID) 
-                            VALUES (@personID)                            
-                            declare @orderID as int 
-                            SET @orderID = SCOPE_IDENTITY()
-                            
-                            COMMIT TRAN
-                            END TRY
-                            BEGIN CATCH
-                            IF @@TRANCOUNT > 0
-                            ROLLBACK TRAN --RollBack in case of Error
-                            END CATCH
-                                                                                
-                            select @orderID";
-                            SqlCommand cmd = new SqlCommand(query, conn);
+                            SqlCommand cmd = new SqlCommand("usp_addperson", conn);
+                            cmd.CommandType = CommandType.StoredProcedure;
                             cmd.Parameters.Add(new SqlParameter("@firstname", SqlDbType.VarChar, 50, "firstname")).Value = FirstName.Text;
                             cmd.Parameters.Add(new SqlParameter("@surname", SqlDbType.VarChar, 50, "surname")).Value = Surname.Text;
                             cmd.Parameters.Add(new SqlParameter("@address1", SqlDbType.VarChar, 50, "address1")).Value = Address1.Text;
@@ -105,15 +55,12 @@ namespace training_rc
                             var ProductList = GetValues();
                             for (int i = 0; i < ProductList.Count; i++)
                             {
-                                String productInsert = @"
-                                INSERT INTO [orderline] (productID,orderID,quantity)
-                                VALUES(@productID,@orderID,@quantity)";
-                                SqlCommand insertproducts = new SqlCommand(productInsert, conn);
-                                insertproducts.Parameters.Add(new SqlParameter("@productID", SqlDbType.VarChar, 50, "productID")).Value = ProductList[i].productID;
-                                insertproducts.Parameters.Add(new SqlParameter("@orderID", SqlDbType.VarChar, 50, "orderID")).Value = orderID;
-                                insertproducts.Parameters.Add(new SqlParameter("@quantity", SqlDbType.VarChar, 50, "QuantityValue")).Value = ProductList[i].quantityValue;
-                                int insertproductsResults = Convert.ToInt32(insertproducts.ExecuteNonQuery());
-                                if (insertproductsResults != 1)
+                                SqlCommand cmdInsertProduct = new SqlCommand("usp_addorder", conn);
+                                cmdInsertProduct.CommandType = CommandType.StoredProcedure;
+                                cmdInsertProduct.Parameters.Add(new SqlParameter("@productID", SqlDbType.Int)).Value = ProductList[i].productID;
+                                cmdInsertProduct.Parameters.Add(new SqlParameter("@orderID", SqlDbType.Int)).Value = orderID;
+                                cmdInsertProduct.Parameters.Add(new SqlParameter("@quantity", SqlDbType.Int)).Value = ProductList[i].quantityValue;
+                                if ((int)cmdInsertProduct.ExecuteNonQuery() != 1)
                                 {
                                     throw new System.ArgumentException("An error occured when saving an order");                                    
                                 }
@@ -122,13 +69,13 @@ namespace training_rc
                             Response.Write("<script type='text/javascript'>alert('SuccessFul Entry');</script>");
                         }                    
                     }
-                    else { Response.Write("<script type='text/javascript'>alert('sorry the data you entered was not valid');</script>"); scope.Dispose();}
+                    else { Response.Write("<script type='text/javascript'>alert('sorry the data you entered was not valid');</script>"); }
                 }
                 catch (Exception ex)
                 {
                     Response.Write(String.Format("<script type='text/javascript'>alert({0});</script>", ex.ToString()));                    
                 }
-            }  
+              
         }
         /// <summary>
         /// Validates the Form on placeOrders.aspx
