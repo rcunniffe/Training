@@ -1,6 +1,6 @@
 use training
-DECLARE @intErrorCode INT
-BEGIN TRAN
+BEGIN TRY
+BEGIN TRANSACTION
 INSERT INTO product (name, [description], price)
 VALUES ('Sony Ericsson Xperia X8 black', 'View the viral. Chat to your chums. Xperia™ X8 keeps you entertained. Infinitely. This is the middle child, between the Xperia X10 and the X10 mini. Bringing you all the goodness of a', 69.00)
 INSERT INTO product (name, [description], price)
@@ -13,9 +13,10 @@ INSERT INTO product (name, [description], price)
 VALUES ('BlackBerry® Bold 9900  ', 'The Bold Touch is running the new BlackBerry 7 OS packed with powerful new features and apps. It comes with 5 MP camera and HD video recording (720p), 8GB memory, WiFi, integrated GPS and all the', 539.00)
 INSERT INTO product (name, [description], price)
 VALUES ('Sony Ericsson Xperia X8 black', 'View the viral. Chat to your chums. Xperia™ X8 keeps you entertained. Infinitely. This is the middle child, between the Xperia X10 and the X10 mini. Bringing you all the goodness of a', 69.00)
-IF (@intErrorCode <> 0) BEGIN
-PRINT 'Unexpected error occurred!'
+ COMMIT TRAN
+    END TRY
+    BEGIN CATCH
+    IF @@TRANCOUNT > 0
     ROLLBACK TRAN
-END
-COMMIT TRAN
+    END CATCH
 		
