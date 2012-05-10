@@ -7,7 +7,8 @@ GO
 
 SET QUOTED_IDENTIFIER ON
 GO
-
+DROP PROCEDURE [dbo].[usp_addperson]
+GO
 CREATE PROCEDURE [dbo].[usp_addperson]
 	-- Add the parameters for the stored procedure here
 	@firstname VarChar(50),
@@ -17,7 +18,8 @@ CREATE PROCEDURE [dbo].[usp_addperson]
 	@address3 VarChar(50),
 	@country VarChar(50),
 	@city VarChar(50),
-	@postcode VARCHAR(50)
+	@postcode VARCHAR(50),
+	@statecode VARCHAR(10)
 		
 AS
 BEGIN
@@ -56,10 +58,10 @@ BEGIN
     INSERT INTO personaddress(personID,addressID,addresstypeID) 
     VALUES (@personID,@addressID,@addresstypeID) 
     declare @personaddressID as int 
-    SET @personaddressID = SCOPE_IDENTITY() 
-
-    INSERT INTO [order](personID) 
-    VALUES (@personID)                            
+    SET @personaddressID = SCOPE_IDENTITY()
+	
+    INSERT INTO [order](personID,statecode) 
+    VALUES (@personID,@statecode)                            
     declare @orderID as int 
     SET @orderID = SCOPE_IDENTITY()
     

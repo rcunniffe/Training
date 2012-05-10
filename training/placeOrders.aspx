@@ -2,7 +2,7 @@
     CodeBehind="PlaceOrders.aspx.cs" Inherits="training_rc.PlaceOrders" culture="auto" meta:resourcekey="PlaceOrdersRessource" uiculture="auto" %>
 
 <asp:Content ID="BodyContent" runat="server" ContentPlaceHolderID="MainContent"> 
- <script src="http://code.jquery.com/jquery-latest.js"></script>
+    <script src="http://code.jquery.com/jquery-latest.js"></script>
     <script language="javascript" type='text/javascript'>
 
 
@@ -19,20 +19,20 @@
             }
             else if (($('.qty')[i].value == null) && ($('.qty')[i].value == ''))
             {
-                               
+
             }
         }        
     }
 </script>
     <div class="fieldset" style="height:100%; width:890px;">
-        <form action="" id="customerForm">        
+        <form action="" id="customerForm">  
+        <asp:ValidationSummary CssClass="red" ID="ValidationSummary1" runat="server" />      
             <h1>
             Please Enter Your Details
             </h1>
             <div style="padding-bottom:50px;">   
             <p style=" float:right;">
-                <asp:ValidationSummary ID="ValidationSummary1" runat="server" />
-            </p>
+                &nbsp;
                     <div class="form-item webform-component webform-component-textfield">                                
                         <p>
                         <asp:Label ID="LFirstName" runat="server" meta:resourcekey="FirstName" class="orange"></asp:Label><span class="red">*</span>
@@ -101,7 +101,7 @@
                   <asp:Label Visible="false" runat="server" ID="productID" Text='<%# Eval("productID") %>' />                                    
                   <asp:Label ID="quantity" runat="server" meta:resourcekey="Quantity"></asp:Label>  
                   <asp:TextBox CssClass="Quantity" ID="QuantityValue" runat="server" size="30" class="inputBoxStyle qty "></asp:TextBox><br />                                   
-                  <asp:RegularExpressionValidator CssClass="red" ValidationExpression="[0-9]" ControlToValidate="QuantityValue" ID="RegularExpressionValidator1" runat="server" ErrorMessage="Please use a number ranging from 1-9"></asp:RegularExpressionValidator>                
+                  <asp:RegularExpressionValidator CssClass="red" ValidationExpression="[\d+ 0-9]" ControlToValidate="QuantityValue" ID="RegularExpressionValidator1" runat="server" ErrorMessage="Please use a number ranging from 1-9 with no space"></asp:RegularExpressionValidator>                
             </div>
         </ItemTemplate>
         <FooterTemplate>
@@ -109,10 +109,10 @@
         </FooterTemplate>
         </asp:Repeater>         
         </div>
-        <div style=" width:500px;">
-            <p>
-                <asp:Button ID="Submit" runat="server" OnClick="sunmitbtn_Click" class="button" meta:resourcekey="SubmitResource1"/>
+        <div style=" width:860px;">
+            <p style=" float:right;">                
                 <asp:Button ID="Reset" runat="server" UseSubmitBehavior="False" OnClientClick="ClearAllControls(this.form);" class="button" meta:resourcekey="ResetResource1" />                                
+                <asp:Button ID="Submit" runat="server" OnClick="sunmitbtn_Click" class="button" meta:resourcekey="SubmitResource1"/>
             </p> 
         </div>            
                 

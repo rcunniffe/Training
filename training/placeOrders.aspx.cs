@@ -24,6 +24,13 @@ namespace training_rc
             public int productID { get; set; }
             public int quantityValue { get; set; }
         }
+
+        public enum State { 
+            processed,
+            received,
+            readytogo,
+            delivering,
+            delivered }
         /// <summary>
         /// Handles the Click event of the sunmitbtn control.
         /// </summary>
@@ -39,6 +46,7 @@ namespace training_rc
                         using(TransactionScope scope = new TransactionScope())
                         using (SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["trainingConnectionString"].ConnectionString))
                         {
+                            State state = State.processed;                                               
                             conn.Open();
                             SqlCommand cmd = new SqlCommand("usp_addperson", conn);
                             cmd.CommandType = CommandType.StoredProcedure;
@@ -50,6 +58,8 @@ namespace training_rc
                             cmd.Parameters.Add(new SqlParameter("@country", SqlDbType.VarChar, 50, "country")).Value = Country.Text;
                             cmd.Parameters.Add(new SqlParameter("@city", SqlDbType.VarChar, 50, "city")).Value = City.Text;
                             cmd.Parameters.Add(new SqlParameter("@postcode", SqlDbType.VarChar, 50, "postcode")).Value = PostCode.Text;
+                            cmd.Parameters.Add(new SqlParameter("@statecode", SqlDbType.VarChar, 50, "statecode")).Value = state.ToString();
+                            
                             int orderID = Convert.ToInt32(cmd.ExecuteScalar());
 
                             var ProductList = GetValues();
