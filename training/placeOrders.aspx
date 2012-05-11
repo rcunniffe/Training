@@ -26,7 +26,7 @@
 </script>
     <div class="fieldset" style="height:100%; width:890px;">
         <form action="" id="customerForm">  
-        <asp:ValidationSummary CssClass="red" ID="ValidationSummary1" runat="server" />      
+        <asp:ValidationSummary CssClass="red" ID="ValidationSummaryForCustomerForm" runat="server" />      
             <h1>
             Please Enter Your Details
             </h1>
@@ -101,7 +101,7 @@
                   <asp:Label Visible="false" runat="server" ID="productID" Text='<%# Eval("productID") %>' />                                    
                   <asp:Label ID="quantity" runat="server" meta:resourcekey="Quantity"></asp:Label>  
                   <asp:TextBox CssClass="Quantity" ID="QuantityValue" runat="server" size="30" class="inputBoxStyle qty "></asp:TextBox><br />                                   
-                  <asp:RegularExpressionValidator CssClass="red" ValidationExpression="[\d+ 0-9]" ControlToValidate="QuantityValue" ID="RegularExpressionValidator1" runat="server" ErrorMessage="Please use a number ranging from 1-9 with no space"></asp:RegularExpressionValidator>                
+                  <asp:RegularExpressionValidator CssClass="red" ValidationExpression="[\d+ 0-9]" ControlToValidate="QuantityValue" ID="RegularExpressionValidatorQuantity" runat="server" meta:resourcekey="RegularExpressionValidatorQuantityResource1"></asp:RegularExpressionValidator>                
             </div>
         </ItemTemplate>
         <FooterTemplate>

@@ -19,7 +19,7 @@ CREATE PROCEDURE [dbo].[usp_addperson]
 	@country VarChar(50),
 	@city VarChar(50),
 	@postcode VARCHAR(50),
-	@statecode VARCHAR(10)
+	@code VARCHAR(10)
 		
 AS
 BEGIN
@@ -59,9 +59,13 @@ BEGIN
     VALUES (@personID,@addressID,@addresstypeID) 
     declare @personaddressID as int 
     SET @personaddressID = SCOPE_IDENTITY()
+
+	DECLARE @orderstateID int    
+    Select @orderstateID = orderstateID from [orderstate]
+    where @code = [orderstate].code
 	
-    INSERT INTO [order](personID,statecode) 
-    VALUES (@personID,@statecode)                            
+    INSERT INTO [order](personID,orderstateID) 
+    VALUES (@personID,@orderstateID)                            
     declare @orderID as int 
     SET @orderID = SCOPE_IDENTITY()
     

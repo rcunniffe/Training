@@ -117,66 +117,6 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="FirstName.Text" xml:space="preserve">
-    <value>First Name</value>
-  </data>
-  <data name="LAddress1Resource1.Text" xml:space="preserve">
-    <value>Address 1</value>
-  </data>
-  <data name="LAddress2Resource1.Text" xml:space="preserve">
-    <value>Address 2</value>
-  </data>
-  <data name="LAddress3Resource1.Text" xml:space="preserve">
-    <value>Address 3</value>
-  </data>
-  <data name="LCityResource1.Text" xml:space="preserve">
-    <value>City</value>
-  </data>
-  <data name="LCountryResource1.Text" xml:space="preserve">
-    <value>Country</value>
-  </data>
-  <data name="LPostCodeResource1.Text" xml:space="preserve">
-    <value>PostCode</value>
-  </data>
-  <data name="LSurnameResource1.Text" xml:space="preserve">
-    <value>Surname</value>
-  </data>
-  <data name="PageResource1.Title" xml:space="preserve">
-    <value>Place Order</value>
-  </data>
-  <data name="placeOrderHeader1" xml:space="preserve">
-    <value>Please fill the Customer Details</value>
-  </data>
-  <data name="placeOrderHeader2" xml:space="preserve">
-    <value>Please Choose your products</value>
-  </data>
-  <data name="Quantity.Text" xml:space="preserve">
-    <value>Quantity</value>
-  </data>
-  <data name="RequiredFieldValidatorAddressResource1.ErrorMessage" xml:space="preserve">
-    <value>Please enter your an Address</value>
-  </data>
-  <data name="RequiredFieldValidatorCityResource1.ErrorMessage" xml:space="preserve">
-    <value>Please enter a City</value>
-  </data>
-  <data name="RequiredFieldValidatorCountryResource1.ErrorMessage" xml:space="preserve">
-    <value>Please enter a Country</value>
-  </data>
-  <data name="RequiredFieldValidatorFnameResource1.ErrorMessage" xml:space="preserve">
-    <value>Please enter your First Name</value>
-  </data>
-  <data name="RequiredFieldValidatorPostCodeResource1.ErrorMessage" xml:space="preserve">
-    <value>Please enter a Post code</value>
-  </data>
-  <data name="RequiredFieldValidatorSnameResource1.ErrorMessage" xml:space="preserve">
-    <value>Please enter A Surname</value>
-  </data>
-  <data name="ResetResource1.Text" xml:space="preserve">
-    <value>Reset</value>
-  </data>
-  <data name="SubmitResource1.Text" xml:space="preserve">
-    <value>Submit</value>
-  </data>
   <data name="BoundFieldAddress1.HeaderText" xml:space="preserve">
     <value>Address Line 1</value>
   </data>
@@ -204,10 +144,10 @@
   <data name="BoundFieldOrderState.HeaderText" xml:space="preserve">
     <value>Order State</value>
   </data>
+  <data name="BoundFieldResource1.HeaderText" xml:space="preserve">
+    <value>order id</value>
+  </data>
   <data name="BoundFieldSurname.HeaderText" xml:space="preserve">
     <value>Surname</value>
-  </data>
-  <data name="RegularExpressionValidatorQuantityResource1.ErrorMessage" xml:space="preserve">
-    <value>Please use a number ranging from 1-9 with no space</value>
   </data>
 </root>

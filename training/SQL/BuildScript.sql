@@ -67,13 +67,13 @@ GO
 CREATE TABLE [orderstate]
 ( 
 	orderstateID int IDENTITY(1,1) Primary Key,
-	orderstate VARCHAR (100) NOT NULL,
-	statecode VARCHAR (10) NOT NULL
+	code VARCHAR (10) NOT NULL,
+	name VARCHAR (100) NOT NULL	
 )
 CREATE TABLE [order]
 (	orderID int IDENTITY(1,1) Primary Key,	
 	personID int FOREIGN KEY REFERENCES personaddress(personaddressID),
-	statecode VARCHAR (50) NOT NULL	
+	orderstateID int FOREIGN KEY REFERENCES [orderstate](orderstateID)	
     );
 GO  
 CREATE TABLE [orderline]
