@@ -2,10 +2,11 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="HeadContent" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
+<script runat="server">
 
-    <asp:GridView ID="ViewOrders" runat="server" AutoGenerateColumns="False" 
-    DataSourceID="OrdersList" CellPadding="4" ForeColor="#333333" 
-        GridLines="None" >
+  
+  </script>
+    <asp:GridView ID="ViewOrders" runat="server" AutoGenerateColumns="False" DataSourceID="OrdersList" CellPadding="4" ForeColor="#333333" GridLines="None" onrowcommand="PopulateOrderline_RowCommand">
         <AlternatingRowStyle BackColor="White" />
         <Columns>
             <asp:BoundField DataField="orderID" HeaderText="Order ID" InsertVisible="False" ReadOnly="True" SortExpression="orderID" meta:resourcekey="BoundFieldOrderID" />
@@ -17,7 +18,8 @@
             <asp:BoundField DataField="code"  SortExpression="code" meta:resourcekey="BoundFieldAddressType" /> 
             <asp:BoundField DataField="city"  SortExpression="city" meta:resourcekey="BoundFieldCity" /> 
             <asp:BoundField DataField="country" SortExpression="country" meta:resourcekey="BoundFieldCountry" />   
-            <asp:BoundField DataField="name" SortExpression="name" meta:resourcekey="BoundFieldOrderState" />           
+            <asp:BoundField DataField="name" SortExpression="name" meta:resourcekey="BoundFieldOrderState" />            
+            <asp:buttonfield buttontype="Link" commandname="getOrderID" text="View Order"/>       
         </Columns>
         <EditRowStyle BackColor="#2461BF" />
         <FooterStyle BackColor="#507CD1" Font-Bold="True" ForeColor="White" />
