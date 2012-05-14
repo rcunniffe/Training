@@ -50,7 +50,37 @@
     Join [orderstate]
     ON [order].orderstateID = [orderstate].orderstateID">
 </asp:SqlDataSource>
-<asp:GridView ID="GridView2"
+
+<asp:ScriptManager EnablePartialRendering="true" ID="ScriptManager1" runat="server"></asp:ScriptManager>
+    <div>       
+        <asp:UpdatePanel ID="UpdatePanel2" runat="server" UpdateMode="Conditional">
+        <ContentTemplate>
+        <asp:GridView ID="GridView3"
+        runat="server"
+        AllowPaging="True"
+            AllowSorting="True"
+            AutoGenerateColumns="False"
+            PagerSettings-Visible="true" 
+            EnableViewState="False" 
+            CellPadding="4" 
+            ForeColor="#333333" 
+            GridLines="None" >            
+            <Columns>
+                <asp:BoundField DataField="orderlineID" InsertVisible="False" ReadOnly="True" SortExpression="orderlineID" meta:resourcekey="BoundFieldOrderLineID" />
+                <asp:BoundField DataField="orderID" SortExpression="Order ID" meta:resourcekey="BoundFieldOrderID" />
+                <asp:BoundField DataField="name"  SortExpression="firstname" meta:resourcekey="BoundFieldFirstName" />
+                <asp:BoundField DataField="description"  SortExpression="description" meta:resourcekey="BoundFieldDescription" />  
+                <asp:BoundField DataField="quantity"  SortExpression="quantity" meta:resourcekey="BoundFieldQuantity" />                         
+            </Columns>
+        </asp:GridView>   
+            <asp:Button ID="Button2" OnClick="Button2_Click" runat="server" Text="Button" />       
+        </ContentTemplate>
+        <Triggers>
+        <asp:AsyncPostBackTrigger ControlID="Button2" EventName="Click" />
+        </Triggers>
+        </asp:UpdatePanel>
+    </div>
+<asp:GridView ID="OrderLine"
                  runat="server"
                  AllowPaging="True" 
                  AllowSorting="True"

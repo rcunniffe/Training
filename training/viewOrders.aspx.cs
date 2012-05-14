@@ -11,11 +11,16 @@ using System.Reflection;
 using System.Resources;
 using System.Transactions;
 
-
 namespace training_rc
 {
     public partial class viewOrders : System.Web.UI.Page
-    {        
+    {
+        /// <summary>
+        /// Populates the order line grid.
+        /// </summary>
+        /// <param name="sender">The sender.</param>
+        /// <param name="e">The <see cref="System.EventArgs"/> instance containing the event data.</param>
+        /// <param name="orderID">The order ID.</param>
         public void populateOrderLineGrid(object sender, EventArgs e, int orderID)
         {
             using (TransactionScope scope = new TransactionScope())
@@ -31,8 +36,8 @@ namespace training_rc
                 adapter.Fill(ds);
                 if (ds.Tables.Count > 0)
                 {
-                    GridView2.DataSource = ds;
-                    GridView2.DataBind();
+                    OrderLine.DataSource = ds;
+                    OrderLine.DataBind();
                 }
                 else
                 {
@@ -54,6 +59,7 @@ namespace training_rc
                 int orderID = Convert.ToInt32(Server.HtmlDecode(row.Cells[0].Text));
                 populateOrderLineGrid(sender, e, orderID);
             }
-        }
+        }       
+        
     }
 }
