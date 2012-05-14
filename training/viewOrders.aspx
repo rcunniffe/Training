@@ -3,8 +3,6 @@
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
 <script runat="server">
-
-  
   </script>
     <asp:GridView ID="ViewOrders" runat="server" AutoGenerateColumns="False" DataSourceID="OrdersList" CellPadding="4" ForeColor="#333333" GridLines="None" onrowcommand="PopulateOrderline_RowCommand">
         <AlternatingRowStyle BackColor="White" />
@@ -52,4 +50,30 @@
     Join [orderstate]
     ON [order].orderstateID = [orderstate].orderstateID">
 </asp:SqlDataSource>
+<asp:GridView ID="GridView2"
+                 runat="server"
+                 AllowPaging="True" 
+                 AllowSorting="True"
+                 AutoGenerateColumns="False"                 
+                 PagerSettings-Visible="true" EnableViewState="False" 
+        CellPadding="4" ForeColor="#333333" GridLines="None" >
+            <AlternatingRowStyle BackColor="White" />
+            <Columns>
+            <asp:BoundField DataField="orderlineID" InsertVisible="False" ReadOnly="True" SortExpression="orderlineID" meta:resourcekey="BoundFieldOrderLineID" />
+            <asp:BoundField DataField="orderID" SortExpression="Order ID" meta:resourcekey="BoundFieldOrderID" />
+            <asp:BoundField DataField="name"  SortExpression="firstname" meta:resourcekey="BoundFieldFirstName" />
+            <asp:BoundField DataField="description"  SortExpression="description" meta:resourcekey="BoundFieldDescription" />  
+            <asp:BoundField DataField="quantity"  SortExpression="quantity" meta:resourcekey="BoundFieldQuantity" />                         
+        </Columns>
+            <EditRowStyle BackColor="#2461BF" />
+            <FooterStyle BackColor="#507CD1" Font-Bold="True" ForeColor="White" />
+            <HeaderStyle BackColor="#507CD1" Font-Bold="True" ForeColor="White" />
+            <PagerStyle BackColor="#2461BF" ForeColor="White" HorizontalAlign="Center" />
+            <RowStyle BackColor="#EFF3FB" />
+            <SelectedRowStyle BackColor="#D1DDF1" Font-Bold="True" ForeColor="#333333" />
+            <SortedAscendingCellStyle BackColor="#F5F7FB" />
+            <SortedAscendingHeaderStyle BackColor="#6D95E1" />
+            <SortedDescendingCellStyle BackColor="#E9EBEF" />
+            <SortedDescendingHeaderStyle BackColor="#4870BE" />
+</asp:GridView>   
 </asp:Content>

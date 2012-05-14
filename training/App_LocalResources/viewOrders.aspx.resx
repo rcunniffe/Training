@@ -135,14 +135,23 @@
   <data name="BoundFieldCountry.HeaderText" xml:space="preserve">
     <value>Country</value>
   </data>
+  <data name="BoundFieldDescription.HeaderText" xml:space="preserve">
+    <value>Description</value>
+  </data>
   <data name="BoundFieldFirstName.HeaderText" xml:space="preserve">
     <value>First Name</value>
   </data>
   <data name="BoundFieldOrderID.HeaderText" xml:space="preserve">
     <value>Order ID</value>
   </data>
+  <data name="BoundFieldOrderLineID.HeaderText" xml:space="preserve">
+    <value>Order Line ID</value>
+  </data>
   <data name="BoundFieldOrderState.HeaderText" xml:space="preserve">
     <value>Order State</value>
+  </data>
+  <data name="BoundFieldQuantity.HeaderText" xml:space="preserve">
+    <value>Quantity</value>
   </data>
   <data name="BoundFieldResource1.HeaderText" xml:space="preserve">
     <value>order id</value>
