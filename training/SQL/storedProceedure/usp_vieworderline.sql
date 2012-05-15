@@ -18,9 +18,9 @@ GO
 -- Create date: <Create Date,,>
 -- Description:	<Description,,>
 -- =============================================
-DROP PROCEDURE [dbo].[usp_getorderline]
+DROP PROCEDURE [dbo].[usp_vieworderline]
 Go
-CREATE PROCEDURE [dbo].[usp_getorderline]
+CREATE PROCEDURE [dbo].[usp_vieworderline]
 	-- Add the parameters for the stored procedure here
 	@orderID int
 AS
