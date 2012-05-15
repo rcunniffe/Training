@@ -40,27 +40,35 @@ namespace training_rc
         /// <param name="sender">The source of the event.</param>
         /// <param name="e">The <see cref="System.EventArgs"/> instance containing the event data.</param>
         public void sunmitbtn_Click(object sender, EventArgs e)
-        {
-            
+        {            
                 try
                 {
                     if ((isValid()) && (isValidProduct()))
                     {
                         using(TransactionScope scope = new TransactionScope())
                         using (SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["trainingConnectionString"].ConnectionString))
-                        {                                                                          
+                        {
+                            const int firstnameParamSize = 50;
+                            const int surnameParamSize = 50;
+                            const int address1ParamSize = 50;
+                            const int address2ParamSize = 50;
+                            const int address3ParamSize = 50;
+                            const int countryParamSize = 50;
+                            const int cityParamSize = 50;
+                            const int postcodeParamSize = 50;
+                            const int orderstatecodeParamSize = 50;
                             conn.Open();
                             SqlCommand cmd = new SqlCommand("usp_addperson", conn);
                             cmd.CommandType = CommandType.StoredProcedure;
-                            cmd.Parameters.Add(new SqlParameter("@firstname", SqlDbType.VarChar, 50, "firstname")).Value = FirstName.Text;
-                            cmd.Parameters.Add(new SqlParameter("@surname", SqlDbType.VarChar, 50, "surname")).Value = Surname.Text;
-                            cmd.Parameters.Add(new SqlParameter("@address1", SqlDbType.VarChar, 50, "address1")).Value = Address1.Text;
-                            cmd.Parameters.Add(new SqlParameter("@address2", SqlDbType.VarChar, 50, "address2")).Value = Address2.Text;
-                            cmd.Parameters.Add(new SqlParameter("@address3", SqlDbType.VarChar, 50, "address3")).Value = Address3.Text;
-                            cmd.Parameters.Add(new SqlParameter("@country", SqlDbType.VarChar, 50, "country")).Value = Country.Text;
-                            cmd.Parameters.Add(new SqlParameter("@city", SqlDbType.VarChar, 50, "city")).Value = City.Text;
-                            cmd.Parameters.Add(new SqlParameter("@postcode", SqlDbType.VarChar, 50, "postcode")).Value = PostCode.Text;
-                            cmd.Parameters.Add(new SqlParameter("@code", SqlDbType.VarChar, 50, "code")).Value = State.processed.ToString();
+                            cmd.Parameters.Add(new SqlParameter("@firstname", SqlDbType.VarChar, firstnameParamSize, "firstname")).Value = FirstName.Text;
+                            cmd.Parameters.Add(new SqlParameter("@surname", SqlDbType.VarChar, surnameParamSize, "surname")).Value = Surname.Text;
+                            cmd.Parameters.Add(new SqlParameter("@address1", SqlDbType.VarChar, address1ParamSize, "address1")).Value = Address1.Text;
+                            cmd.Parameters.Add(new SqlParameter("@address2", SqlDbType.VarChar, address2ParamSize, "address2")).Value = Address2.Text;
+                            cmd.Parameters.Add(new SqlParameter("@address3", SqlDbType.VarChar, address3ParamSize, "address3")).Value = Address3.Text;
+                            cmd.Parameters.Add(new SqlParameter("@country", SqlDbType.VarChar, countryParamSize, "country")).Value = Country.Text;
+                            cmd.Parameters.Add(new SqlParameter("@city", SqlDbType.VarChar, cityParamSize, "city")).Value = City.Text;
+                            cmd.Parameters.Add(new SqlParameter("@postcode", SqlDbType.VarChar, postcodeParamSize, "postcode")).Value = PostCode.Text;
+                            cmd.Parameters.Add(new SqlParameter("@orderstatecode", SqlDbType.VarChar, orderstatecodeParamSize, "code")).Value = State.processed.ToString();
                             
                             int orderID = Convert.ToInt32(cmd.ExecuteScalar());
 
@@ -78,7 +86,7 @@ namespace training_rc
                                 }
                             }
                             scope.Complete();
-                            Response.Write("<script type='text/javascript'>alert('SuccessFul Entry');</script>");
+                            Response.Write("<script type='text/javascript'>alert('SuccessFul Entry');</script>");                            
                         }                    
                     }
                     else { Response.Write("<script type='text/javascript'>alert('sorry the data you entered was not valid');</script>"); }
@@ -86,8 +94,7 @@ namespace training_rc
                 catch (Exception ex)
                 {
                     Response.Write(String.Format("<script type='text/javascript'>alert({0});</script>", ex.ToString()));                    
-                }
-              
+                }              
         }
         /// <summary>
         /// Validates the Form on placeOrders.aspx

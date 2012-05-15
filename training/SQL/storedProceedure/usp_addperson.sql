@@ -19,7 +19,7 @@ CREATE PROCEDURE [dbo].[usp_addperson]
 	@country VarChar(50),
 	@city VarChar(50),
 	@postcode VARCHAR(50),
-	@code VARCHAR(10)
+	@orderstatecode VARCHAR(10)
 		
 AS
 BEGIN
@@ -62,7 +62,7 @@ BEGIN
 
 	DECLARE @orderstateID int    
     Select @orderstateID = orderstateID from [orderstate]
-    where @code = [orderstate].code
+    where @orderstatecode = [orderstate].code
 	
     INSERT INTO [order](personID,orderstateID) 
     VALUES (@personID,@orderstateID)                            
