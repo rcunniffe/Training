@@ -27,12 +27,12 @@ namespace training_rc
             using (SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["trainingConnectionString"].ConnectionString))
             {                
                 DataSet ds = new DataSet();
-                SqlCommand cmd2 = new SqlCommand("usp_vieworderline", conn);
-                cmd2.CommandType = CommandType.StoredProcedure;
-                cmd2.Parameters.Add("@orderID", SqlDbType.Int);
-                cmd2.Parameters["@orderID"].Value = orderID;
-                SqlDataAdapter adapter = new SqlDataAdapter("usp_vieworderline", conn);
-                adapter.SelectCommand = cmd2;
+                SqlDataAdapter adapter = new SqlDataAdapter(); 
+                SqlCommand getOrderLineCmd = new SqlCommand("usp_getorderline", conn);
+                getOrderLineCmd.CommandType = CommandType.StoredProcedure;
+                getOrderLineCmd.Parameters.Add("@orderID", SqlDbType.Int);
+                getOrderLineCmd.Parameters["@orderID"].Value = orderID;                            
+                adapter.SelectCommand = getOrderLineCmd;
                 adapter.Fill(ds);
                 if (ds.Tables.Count > 0)
                 {
@@ -40,7 +40,6 @@ namespace training_rc
                     OrderLine.DataBind();
                     OrderLineHeader.Text = "Order Detail";
                     OrderLineHeader.Visible = true;
-
                 }
                 else
                 {

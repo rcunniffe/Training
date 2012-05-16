@@ -1,10 +1,6 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="viewOrders.aspx.cs" Inherits="training_rc.viewOrders" culture="auto" meta:resourcekey="PageResource2" uiculture="auto" %>
-<asp:Content ID="Content1" ContentPlaceHolderID="HeadContent" runat="server">
-</asp:Content>
-<asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
-<script runat="server">
-  </script>
-  <h1 style=" padding-bottom:10px;">Orders Table</h1>
+<asp:Content ID="BodyContent" ContentPlaceHolderID="MainContent" runat="server">
+    <h1 class="orderTableTitle">Orders Table</h1>
     <asp:GridView ID="ViewOrders" runat="server" AutoGenerateColumns="False" DataSourceID="OrdersList" CellPadding="4" ForeColor="#333333" GridLines="None" onrowcommand="PopulateOrderline_RowCommand">
         <AlternatingRowStyle BackColor="White" />
         <Columns>
@@ -30,45 +26,39 @@
         <SortedAscendingHeaderStyle BackColor="#6D95E1" />
         <SortedDescendingCellStyle BackColor="#E9EBEF" />
         <SortedDescendingHeaderStyle BackColor="#4870BE" />
-    </asp:GridView>
-<asp:SqlDataSource ID="OrdersList" runat="server" 
-    ConnectionString="<%$ ConnectionStrings:trainingConnectionString %>" 
-    SelectCommand="
-    Select person.personID, [order].orderID, person.firstname, person.surname, [address].address1, [address].address2, [address].address3, addresstype.code, city.city, country.country, [orderstate].name
-    from [address]
-    INNER JOIN [personaddress] ON [address].addressID = personaddress.addressID
-    Join person ON personaddress.personaddressID = person.personID
-    Join [order] ON [order].personID = person.personID
-    Join addresstype ON addresstype.addresstypeID = personaddress.addresstypeID
-    Join city ON city.cityID = [address].cityID
-    Join country ON city.countryID = country.countryID
-    Join [orderstate] ON [order].orderstateID = [orderstate].orderstateID">
-</asp:SqlDataSource>
-<asp:Label ID="OrderLineHeader" CssClass="orderLineHeader" style=" margin-top:20px; margin-bottom:10px; font-size:1.6em; color:#666; font-variant:small-caps; font-weight:bold;" Visible="false" runat="server" Text="Label"></asp:Label>
-<asp:GridView ID="OrderLine"
-                 runat="server"
-                 AllowPaging="True" 
-                 AllowSorting="True"
-                 AutoGenerateColumns="False"                 
-                 PagerSettings-Visible="true" EnableViewState="False" 
-        CellPadding="4" ForeColor="#333333" GridLines="None" >
-            <AlternatingRowStyle BackColor="White" />
-            <Columns>
+     </asp:GridView>
+    <asp:SqlDataSource ID="OrdersList" runat="server" 
+        ConnectionString="<%$ ConnectionStrings:trainingConnectionString %>" 
+        SelectCommand="
+        Select person.personID, [order].orderID, person.firstname, person.surname, [address].address1, [address].address2, [address].address3, addresstype.code, city.city, country.country, [orderstate].name
+        from [address]
+        INNER JOIN [personaddress] ON [address].addressID = personaddress.addressID
+        Join person ON personaddress.personaddressID = person.personID
+        Join [order] ON [order].personID = person.personID
+        Join addresstype ON addresstype.addresstypeID = personaddress.addresstypeID
+        Join city ON city.cityID = [address].cityID
+        Join country ON city.countryID = country.countryID
+        Join [orderstate] ON [order].orderstateID = [orderstate].orderstateID">
+    </asp:SqlDataSource>
+    <asp:Label ID="OrderLineHeader" CssClass="orderLineHeader" Visible="false" runat="server" Text="Label"></asp:Label>
+    <asp:GridView ID="OrderLine" runat="server" AllowPaging="True" AllowSorting="True" AutoGenerateColumns="False" PagerSettings-Visible="true" EnableViewState="False" CellPadding="4" ForeColor="#333333" GridLines="None" >
+        <AlternatingRowStyle BackColor="White" />
+        <Columns>
             <asp:BoundField DataField="orderlineID" ControlStyle-CssClass="orderlineIDBoundField" InsertVisible="False" ReadOnly="True" SortExpression="orderlineID" meta:resourcekey="BoundFieldOrderLineID" />
             <asp:BoundField DataField="orderID" SortExpression="Order ID" meta:resourcekey="BoundFieldOrderID" />
             <asp:BoundField DataField="name"  SortExpression="firstname" meta:resourcekey="BoundFieldFirstName" />
             <asp:BoundField DataField="description"  SortExpression="description" meta:resourcekey="BoundFieldDescription" />  
-                                 
+            <asp:BoundField DataField="quantity"  SortExpression="quantity" meta:resourcekey="BoundFieldQuantity" />                                  
         </Columns>
-            <EditRowStyle BackColor="#2461BF" />
-            <FooterStyle BackColor="#507CD1" Font-Bold="True" ForeColor="White" />
-            <HeaderStyle BackColor="#507CD1" Font-Bold="True" ForeColor="White" />
-            <PagerStyle BackColor="#2461BF" ForeColor="White" HorizontalAlign="Center" />
-            <RowStyle BackColor="#EFF3FB" />
-            <SelectedRowStyle BackColor="#D1DDF1" Font-Bold="True" ForeColor="#333333" />
-            <SortedAscendingCellStyle BackColor="#F5F7FB" />
-            <SortedAscendingHeaderStyle BackColor="#6D95E1" />
-            <SortedDescendingCellStyle BackColor="#E9EBEF" />
-            <SortedDescendingHeaderStyle BackColor="#4870BE" />
-</asp:GridView>   
+        <EditRowStyle BackColor="#2461BF" />
+        <FooterStyle BackColor="#507CD1" Font-Bold="True" ForeColor="White" />
+        <HeaderStyle BackColor="#507CD1" Font-Bold="True" ForeColor="White" />
+        <PagerStyle BackColor="#2461BF" ForeColor="White" HorizontalAlign="Center" />
+        <RowStyle BackColor="#EFF3FB" />
+        <SelectedRowStyle BackColor="#D1DDF1" Font-Bold="True" ForeColor="#333333" />
+        <SortedAscendingCellStyle BackColor="#F5F7FB" />
+        <SortedAscendingHeaderStyle BackColor="#6D95E1" />
+        <SortedDescendingCellStyle BackColor="#E9EBEF" />
+        <SortedDescendingHeaderStyle BackColor="#4870BE" />
+    </asp:GridView>   
 </asp:Content>

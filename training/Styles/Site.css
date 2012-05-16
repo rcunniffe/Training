@@ -203,7 +203,10 @@ fieldset
     margin: 1em 0px;
     padding: 1em;
     border: 1px solid #ccc;
+    height:100%;
+    width:890px;
 }
+.buttonDiv{width:860px;}
 
 fieldset p 
 {
@@ -382,10 +385,24 @@ padding-left:10px;
 padding-top:10px;
 margin:10px;
 }
+.prodFor
+{
+font-size:24px;
+padding-left:60px;
+padding-top:60px;
+}
+.prodPrice
+{
+    font-size:24px;
+    color:#0069B3
+}
 .orderLineHeader
 {
- padding-top:20px;
- margin-top:20px;
+    margin-top:20px;
+    font-size:1.6em;
+    color:#666;
+    font-variant:small-caps;
+    font-weight:bold;
 }
 .orderlineIDBoundField
 {
@@ -408,3 +425,4 @@ margin-bottom: 20px !important;
 width:500px;
 text-align:center;
 }
+.orderTableTitle{padding-bottom:10px;}
