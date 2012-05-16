@@ -84,17 +84,26 @@ namespace training_rc
                                 {
                                     throw new System.ArgumentException("An error occured when saving an order");                                    
                                 }
-                            }
+                            }                           
+                            ServerSideFormValidationMessage.Visible = true;
+                            ServerSideFormValidationMessage.Text = "Thank You, The system has received your order";                                                                               
                             scope.Complete();
-                            Response.Write("<script type='text/javascript'>alert('SuccessFul Entry');</script>");                            
+                            
                         }                    
                     }
-                    else { Response.Write("<script type='text/javascript'>alert('sorry the data you entered was not valid');</script>"); }
+                    else 
+                    { 
+                        
+                        ServerSideFormValidationMessage.Visible = true;
+                        ServerSideFormValidationMessage.Text = "An error occured when saving an order";                          
+                    }
                 }
                 catch (Exception ex)
-                {
-                    Response.Write(String.Format("<script type='text/javascript'>alert({0});</script>", ex.ToString()));                    
-                }              
+                {                    
+                    Console.WriteLine("{0} Exception caught.", ex);
+                    ServerSideFormValidationMessage.Visible = true;                   
+                }
+              
         }
         /// <summary>
         /// Validates the Form on placeOrders.aspx

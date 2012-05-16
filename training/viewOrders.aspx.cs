@@ -38,6 +38,9 @@ namespace training_rc
                 {
                     OrderLine.DataSource = ds;
                     OrderLine.DataBind();
+                    OrderLineHeader.Text = "Order Detail";
+                    OrderLineHeader.Visible = true;
+
                 }
                 else
                 {

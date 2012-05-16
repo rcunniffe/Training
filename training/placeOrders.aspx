@@ -24,7 +24,10 @@
         }        
     }
 </script>
-    <div class="fieldset" style="height:100%; width:890px;">
+    <div class="fieldset" style="height:100%; width:890px; text-align:center;">        
+        <div class="" style=" margin-bottom:20px; margin-top:20px; font-size:1.6em;">
+            <asp:Label CssClass="ServerSideFormValidationMessage" ID="ServerSideFormValidationMessage" Visible="false" style="" runat="server" Text="There was an error with the data you submitted, please try again later"></asp:Label>        
+        </div>
         <form action="" id="customerForm">  
         <asp:ValidationSummary CssClass="red" ID="ValidationSummaryForCustomerForm" runat="server" />      
             <h1>
@@ -38,7 +41,7 @@
                         <asp:Label ID="LFirstName" runat="server" meta:resourcekey="FirstName" class="orange"></asp:Label><span class="red">*</span>
                         <asp:RequiredFieldValidator Display="Dynamic" id="RequiredFieldValidatorFname" runat="server" ErrorMessage="RequiredFieldValidatorFnameResource1.ErrorMessage" SetFocusOnError="True" CssClass="red" ControlToValidate="FirstName" meta:resourcekey="RequiredFieldValidatorFnameResource1"></asp:RequiredFieldValidator>
                         </p>
-                        <asp:TextBox  ID="FirstName" runat="server" size="30" class="inputBoxStyle" meta:resourcekey="FirstNameResource1"></asp:TextBox>                        
+                        <asp:TextBox ViewStateMode=Disabled  ID="FirstName" runat="server" size="30" class="inputBoxStyle" meta:resourcekey="FirstNameResource1"></asp:TextBox>                        
                         
                      </div>
                      <div class="form-item webform-component webform-component-textfield"> 
@@ -114,8 +117,7 @@
                 <asp:Button ID="Reset" runat="server" UseSubmitBehavior="False" OnClientClick="ClearAllControls(this.form);" class="button" meta:resourcekey="ResetResource1" />                                
                 <asp:Button ID="Submit" runat="server" OnClick="sunmitbtn_Click" class="button" meta:resourcekey="SubmitResource1"/>
             </p> 
-        </div>            
-                
+        </div>                            
         </form>         
     </div>          
 </asp:Content>
