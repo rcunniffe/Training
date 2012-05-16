@@ -1,3 +1,4 @@
+USE [training]
 -- ================================================
 -- Template generated from Template Explorer using:
 -- Create Procedure (New Menu).SQL
@@ -27,9 +28,7 @@ AS
 BEGIN
 select orderlineID, @orderID as orderID, product.name,product.description, quantity
 from orderline
-Inner Join [order]
-ON orderline.orderID = @orderID 
-Inner Join [product]
-ON orderline.productID = product.productID
+Inner Join [product] ON orderline.productID = product.productID
+Where [orderline].orderID = @orderID
 END
 GO
