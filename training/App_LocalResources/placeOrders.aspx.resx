@@ -210,4 +210,7 @@
   <data name="RegularExpressionValidatorQuantityResource1.ErrorMessage" xml:space="preserve">
     <value>Please use a number ranging from 1-9 with no space</value>
   </data>
+  <data name="RequiredFieldQuantity.ErrorMessage" xml:space="preserve">
+    <value>Enter Quantity</value>
+  </data>
 </root>

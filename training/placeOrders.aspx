@@ -4,28 +4,25 @@
 <asp:Content ID="BodyContent" runat="server" ContentPlaceHolderID="MainContent"> 
     <script src="http://code.jquery.com/jquery-latest.js"></script>
     <script language="javascript" type='text/javascript'>
-
-
     function ClearAllControls(form) {      
         form.reset(); return false;
     }
-
     function CheckQuantity(sender, args) {
         args.IsValid = false;
 
-        for (var i = 0; i < $('.qty').length; i++) {                      
-            if ($('.qty')[i].value != '') {                
+        for (var i = 0; i < $('.Quantity').length; i++) {
+            if ($('.Quantity')[i].value != '') {                
                 args.IsValid = true;
             }
-            else if (($('.qty')[i].value == null) && ($('.qty')[i].value == ''))
+            else if (($('.Quantity')[i].value == null) && ($('.Quantity')[i].value == ''))
             {
 
             }
         }        
     }
-</script>
-    <div class="fieldset" style="height:100%; width:890px; text-align:center;">        
-        <div class="" style=" margin-bottom:20px; margin-top:20px; font-size:1.6em;">
+</script>    
+    <div class="fieldset" style="height:100%; width:890px;">        
+        <div class="" style="text-align:center; margin-bottom:20px; margin-top:20px; font-size:1.6em;">
             <asp:Label CssClass="ServerSideFormValidationMessage" ID="ServerSideFormValidationMessage" Visible="false" style="" runat="server" Text="There was an error with the data you submitted, please try again later"></asp:Label>        
         </div>
         <form action="" id="customerForm">  
@@ -67,8 +64,7 @@
                     <div class="form-item webform-component webform-component-textfield">
                         <p><asp:Label ID="LPostCode" runat="server" class="orange" meta:resourcekey="LPostCodeResource1"></asp:Label><span class="red">*</span>
                         <asp:RequiredFieldValidator Display="Dynamic" id="RequiredFieldValidatorPostCode" runat="server" ErrorMessage="RequiredFieldValidatorPostCodeResource1.ErrorMessage" SetFocusOnError="True" CssClass="red" ControlToValidate="PostCode" meta:resourcekey="RequiredFieldValidatorPostCodeResource1"></asp:RequiredFieldValidator></p>               
-                        <asp:TextBox ID="PostCode" runat="server" size="30" class="inputBoxStyle" meta:resourcekey="PostCodeResource2"></asp:TextBox>
-                        
+                        <asp:TextBox ID="PostCode" runat="server" size="30" class="inputBoxStyle" meta:resourcekey="PostCodeResource2"></asp:TextBox>                        
                     </div>
                     <div class="form-item webform-component webform-component-textfield">
                         <p><asp:Label ID="LCity" runat="server" class="orange" meta:resourcekey="LCityResource1"></asp:Label><span class="red">*</span>
@@ -79,8 +75,7 @@
                     <div class="form-item webform-component webform-component-textfield">
                         <p><asp:Label ID="LCountry" runat="server" class="orange" meta:resourcekey="LCountryResource1"></asp:Label><span class="red">*</span>
                         <asp:RequiredFieldValidator Display="Dynamic" id="RequiredFieldValidatorCountry" runat="server" ErrorMessage="RequiredFieldValidatorCountryResource1.ErrorMessage" SetFocusOnError="True" CssClass="red" ControlToValidate="Country" meta:resourcekey="RequiredFieldValidatorCountryResource1"/></p>
-                        <asp:TextBox ID="Country" runat="server" size="30" class="inputBoxStyle" meta:resourcekey="CountryResource2"></asp:TextBox>
-                        
+                        <asp:TextBox ID="Country" runat="server" size="30" class="inputBoxStyle" meta:resourcekey="CountryResource2"></asp:TextBox>                        
                     </div>
             </div>
             <div>
@@ -96,15 +91,15 @@
           <div style="">            
         </HeaderTemplate>
          <ItemTemplate>
-           <div class="prod">
-                
+           <div class="prod">                
                   <asp:Label CssClass="Name" runat="server" ID="name" Text='<%# Eval("name") %>' /><br />                                           
                   <span style="font-size:24px; padding-left:60px; padding-top:60px;">For <span style=" font-size:24px; color:#0069B3"> &#8364; <asp:Label CssClass="Price" runat="server" ID="Label4" Text='<%# Eval("price") %>' /></span><br /></span>
                   <asp:Label CssClass="description" runat="server" ID="description" Text='<%# Eval("description") %>' /><br />
-                  <asp:Label Visible="false" runat="server" ID="productID" Text='<%# Eval("productID") %>' />                                    
+                  <asp:Label Visible="false" runat="server" ID="productID" Text='<%# Eval("productID") %>' />                                                      
                   <asp:Label ID="quantity" runat="server" meta:resourcekey="Quantity"></asp:Label>  
-                  <asp:TextBox CssClass="Quantity" ID="QuantityValue" runat="server" size="30" class="inputBoxStyle qty "></asp:TextBox><br />                                   
-                  <asp:RegularExpressionValidator CssClass="red" ValidationExpression="[\d+ 0-9]" ControlToValidate="QuantityValue" ID="RegularExpressionValidatorQuantity" runat="server" meta:resourcekey="RegularExpressionValidatorQuantityResource1"></asp:RegularExpressionValidator>                
+                  <asp:TextBox CssClass="Quantity" ID="QuantityValue" runat="server" size="30"></asp:TextBox><br />                                   
+                  <asp:RegularExpressionValidator CssClass="red" ValidationExpression="[\d+ 0-9]" ControlToValidate="QuantityValue" ID="RegularExpressionValidatorQuantity" runat="server" meta:resourcekey="RegularExpressionValidatorQuantityResource1"></asp:RegularExpressionValidator>                                 
+                  <asp:CustomValidator CssClass="red" ID="checkProductValidator" runat="server" ControlToValidate="QuantityValue" ValidateEmptyText="true"  ClientValidationFunction="CheckQuantity" meta:resourcekey="RequiredFieldQuantity" />                              
             </div>
         </ItemTemplate>
         <FooterTemplate>
