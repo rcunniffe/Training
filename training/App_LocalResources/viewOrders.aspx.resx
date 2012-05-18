@@ -141,6 +141,9 @@
   <data name="BoundFieldFirstName.HeaderText" xml:space="preserve">
     <value>First Name</value>
   </data>
+  <data name="BoundFieldName.HeaderText" xml:space="preserve">
+    <value>Name</value>
+  </data>
   <data name="BoundFieldOrderID.HeaderText" xml:space="preserve">
     <value>Order ID</value>
   </data>

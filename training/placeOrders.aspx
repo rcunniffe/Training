@@ -1,5 +1,5 @@
 ﻿<%@ Page Title="Place Order" Language="C#" MasterPageFile="~/Site.master" AutoEventWireup="true"
-    CodeBehind="PlaceOrders.aspx.cs" Inherits="training_rc.PlaceOrders" culture="auto" meta:resourcekey="PlaceOrdersRessource" uiculture="auto" %>
+    CodeBehind="PlaceOrders.aspx.cs" ValidateRequest="false" Inherits="training_rc.PlaceOrders" culture="auto" meta:resourcekey="PlaceOrdersRessource" uiculture="auto" %>
 <asp:Content ID="BodyContent" runat="server" ContentPlaceHolderID="MainContent"> 
     <script src="http://code.jquery.com/jquery-latest.js"></script>
     <script language="javascript" type='text/javascript'>
@@ -106,7 +106,7 @@
         <div class="buttonDiv">
             <p style=" float:right;">                
                 <asp:Button ID="Reset" runat="server" UseSubmitBehavior="False" OnClientClick="ClearAllControls(this.form);" class="button" meta:resourcekey="ResetResource1" />                                
-                <asp:Button ID="Submit" runat="server" OnClick="sunmitbtn_Click" class="button" meta:resourcekey="SubmitResource1"/>
+                <asp:Button ID="Submit" runat="server" OnClick="sunmitbtn_Click" class="button" meta:resourcekey="SubmitResource1" />
             </p> 
         </div>                            
         </form>         

@@ -398,11 +398,11 @@ padding-top:60px;
 }
 .orderLineHeader
 {
-    margin-top:20px;
-    font-size:1.6em;
-    color:#666;
-    font-variant:small-caps;
-    font-weight:bold;
+    margin-top:20px !important;
+    font-size:1.6em !important;
+    color:#666 !important;
+    font-variant:small-caps !important;
+    font-weight:bold !important;
 }
 .orderlineIDBoundField
 {

@@ -40,13 +40,13 @@
         Join country ON city.countryID = country.countryID
         Join [orderstate] ON [order].orderstateID = [orderstate].orderstateID">
     </asp:SqlDataSource>
-    <asp:Label ID="OrderLineHeader" CssClass="orderLineHeader" Visible="false" runat="server" Text="Label"></asp:Label>
+    <asp:Label ID="OrderLineHeader" Class="orderLineHeader" Visible="false" runat="server" Text="Label"></asp:Label>
     <asp:GridView ID="OrderLine" runat="server" AllowPaging="True" AllowSorting="True" AutoGenerateColumns="False" PagerSettings-Visible="true" EnableViewState="False" CellPadding="4" ForeColor="#333333" GridLines="None" >
         <AlternatingRowStyle BackColor="White" />
         <Columns>
             <asp:BoundField DataField="orderlineID" ControlStyle-CssClass="orderlineIDBoundField" InsertVisible="False" ReadOnly="True" SortExpression="orderlineID" meta:resourcekey="BoundFieldOrderLineID" />
             <asp:BoundField DataField="orderID" SortExpression="Order ID" meta:resourcekey="BoundFieldOrderID" />
-            <asp:BoundField DataField="name"  SortExpression="firstname" meta:resourcekey="BoundFieldFirstName" />
+            <asp:BoundField DataField="name"  SortExpression="firstname" meta:resourcekey="BoundFieldName" />
             <asp:BoundField DataField="description"  SortExpression="description" meta:resourcekey="BoundFieldDescription" />  
             <asp:BoundField DataField="quantity"  SortExpression="quantity" meta:resourcekey="BoundFieldQuantity" />                                  
         </Columns>
