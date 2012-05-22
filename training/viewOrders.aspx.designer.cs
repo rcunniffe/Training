@@ -13,15 +13,6 @@ namespace training_rc {
     public partial class viewOrders {
         
         /// <summary>
-        /// ViewOrders control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.GridView ViewOrders;
-        
-        /// <summary>
         /// OrdersList control.
         /// </summary>
         /// <remarks>
@@ -38,6 +29,42 @@ namespace training_rc {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label OrderLineHeader;
+        
+        /// <summary>
+        /// OrderScriptManager control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.ScriptManager OrderScriptManager;
+        
+        /// <summary>
+        /// ViewOrdersUpdatePanel control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.UpdatePanel ViewOrdersUpdatePanel;
+        
+        /// <summary>
+        /// ViewOrders control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.GridView ViewOrders;
+        
+        /// <summary>
+        /// OrderDetailsTitle control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label OrderDetailsTitle;
         
         /// <summary>
         /// OrderLine control.

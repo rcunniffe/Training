@@ -33,13 +33,13 @@ namespace training_rc
                 getOrderLineCmd.Parameters.Add("@orderID", SqlDbType.Int);
                 getOrderLineCmd.Parameters["@orderID"].Value = orderID;                            
                 adapter.SelectCommand = getOrderLineCmd;
-                adapter.Fill(ds);
+                adapter.Fill(ds);               
                 if (ds.Tables.Count > 0)
                 {
                     OrderLine.DataSource = ds;
                     OrderLine.DataBind();
-                    OrderLineHeader.Text = "Order Detail";
-                    OrderLineHeader.Visible = true;
+                    OrderDetailsTitle.Text = "Order Details";
+                    OrderDetailsTitle.Visible = true;
                 }
                 else
                 {
