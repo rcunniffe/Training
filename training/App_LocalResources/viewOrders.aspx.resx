@@ -126,9 +126,6 @@
   <data name="BoundFieldAddress3.HeaderText" xml:space="preserve">
     <value>Address Line 3</value>
   </data>
-  <data name="BoundFieldAddressType.HeaderText" xml:space="preserve">
-    <value>Post Code</value>
-  </data>
   <data name="BoundFieldCity.HeaderText" xml:space="preserve">
     <value>City</value>
   </data>
@@ -152,6 +149,9 @@
   </data>
   <data name="BoundFieldOrderState.HeaderText" xml:space="preserve">
     <value>Order State</value>
+  </data>
+  <data name="BoundFieldPostCode.HeaderText" xml:space="preserve">
+    <value>Post Code</value>
   </data>
   <data name="BoundFieldQuantity.HeaderText" xml:space="preserve">
     <value>Quantity</value>

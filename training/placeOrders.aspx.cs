@@ -35,12 +35,6 @@ namespace training_rc
             delivering,
             delivered }
 
-        private bool InsertOrder() 
-        {
-            
-            return true;
-        }
-
         /// <summary>
         /// Inserts the person and order.
         /// </summary>

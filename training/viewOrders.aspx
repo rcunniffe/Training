@@ -31,7 +31,7 @@
             <asp:BoundField DataField="address1"  SortExpression="address1" meta:resourcekey="BoundFieldAddress1" />  
             <asp:BoundField DataField="address2"  SortExpression="address2" meta:resourcekey="BoundFieldAddress2" />  
             <asp:BoundField DataField="address3"  SortExpression="address3" meta:resourcekey="BoundFieldAddress3" /> 
-            <asp:BoundField DataField="postcode"  SortExpression="postcode" meta:resourcekey="BoundFieldAddressType" /> 
+            <asp:BoundField DataField="postcode"  SortExpression="postcode" meta:resourcekey="BoundFieldPostCode" /> 
             <asp:BoundField DataField="city"  SortExpression="city" meta:resourcekey="BoundFieldCity" /> 
             <asp:BoundField DataField="country" SortExpression="country" meta:resourcekey="BoundFieldCountry" />   
             <asp:BoundField DataField="name" SortExpression="name" meta:resourcekey="BoundFieldOrderState" />            
@@ -54,7 +54,7 @@
             EnableViewState="False" CellPadding="4" ForeColor="#333333" GridLines="Vertical">
                 <AlternatingRowStyle BackColor="White" ForeColor="#284775" />
                 <Columns>            
-                    <asp:BoundField DataField="Order_Number" SortExpression="orderID" meta:resourcekey="BoundFieldOrderID" />
+                    <asp:BoundField DataField="orderID" SortExpression="orderID" meta:resourcekey="BoundFieldOrderID" />
                     <asp:BoundField DataField="name"  SortExpression="firstname" meta:resourcekey="BoundFieldName" />             
                     <asp:BoundField DataField="quantity"  SortExpression="quantity" meta:resourcekey="BoundFieldQuantity" />                                  
                 </Columns>
