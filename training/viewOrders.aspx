@@ -45,7 +45,7 @@
     <asp:GridView ID="OrderLine" runat="server" AllowPaging="True" AllowSorting="True" AutoGenerateColumns="False" PagerSettings-Visible="true" EnableViewState="False" CellPadding="4" ForeColor="#333333" GridLines="None" >
         <AlternatingRowStyle BackColor="White" />
         <Columns>            
-            <asp:BoundField DataField="orderID" SortExpression="Order ID" meta:resourcekey="BoundFieldOrderID" />
+            <asp:BoundField DataField="Order_Number" SortExpression="orderID" meta:resourcekey="BoundFieldOrderID" />
             <asp:BoundField DataField="name"  SortExpression="firstname" meta:resourcekey="BoundFieldName" />             
             <asp:BoundField DataField="quantity"  SortExpression="quantity" meta:resourcekey="BoundFieldQuantity" />                                  
         </Columns>
@@ -60,4 +60,5 @@
         <SortedDescendingCellStyle BackColor="#E9EBEF" />
         <SortedDescendingHeaderStyle BackColor="#4870BE" />
     </asp:GridView>   
+
 </asp:Content>
