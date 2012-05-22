@@ -26,7 +26,7 @@ CREATE PROCEDURE [dbo].[usp_getorderline]
 	@orderID int
 AS
 BEGIN
-select orderlineID, @orderID as orderID, product.name,product.description, quantity
+select @orderID, product.name, quantity
 from orderline
 INNER JOIN [product] ON orderline.productID = product.productID
 Where [orderline].orderID = @orderID

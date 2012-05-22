@@ -127,7 +127,7 @@
     <value>Address Line 3</value>
   </data>
   <data name="BoundFieldAddressType.HeaderText" xml:space="preserve">
-    <value>Address Type</value>
+    <value>Post Code</value>
   </data>
   <data name="BoundFieldCity.HeaderText" xml:space="preserve">
     <value>City</value>
@@ -145,7 +145,7 @@
     <value>Name</value>
   </data>
   <data name="BoundFieldOrderID.HeaderText" xml:space="preserve">
-    <value>Order ID</value>
+    <value>Order Number</value>
   </data>
   <data name="BoundFieldOrderLineID.HeaderText" xml:space="preserve">
     <value>Order Line ID</value>

@@ -35,7 +35,10 @@ CREATE TABLE [city]
 	countryID int FOREIGN KEY REFERENCES country(countryID),
 	);
 GO
-use training
+CREATE TABLE [postcode]
+(	postcodeID int IDENTITY(1,1) Primary Key,	
+	postcode VARCHAR (50) NOT NULL,	
+    );
 GO
 CREATE TABLE [address]
 (	addressID int IDENTITY(1,1) Primary Key,	
@@ -43,11 +46,7 @@ CREATE TABLE [address]
 	address2 VARCHAR (50) NULL,
 	address3 VARCHAR (50) NULL,
 	cityID int FOREIGN KEY REFERENCES city(cityID),	
-    );
-GO
-CREATE TABLE [postcode]
-(	postcodeID int IDENTITY(1,1) Primary Key,	
-	postcode VARCHAR (50) NOT NULL,	
+	postcodeID int FOREIGN KEY REFERENCES postcode(postcodeID),	
     );
 GO
 CREATE TABLE [product]

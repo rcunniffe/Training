@@ -35,6 +35,12 @@ namespace training_rc
             delivering,
             delivered }
 
+        private bool InsertOrder() 
+        {
+            
+            return true;
+        }
+
         /// <summary>
         /// Inserts the person and order.
         /// </summary>
@@ -65,9 +71,7 @@ namespace training_rc
                 cmd.Parameters.Add(new SqlParameter("@city", SqlDbType.VarChar, cityParamSize, "city")).Value = Server.HtmlEncode(City.Text);
                 cmd.Parameters.Add(new SqlParameter("@postcode", SqlDbType.VarChar, postcodeParamSize, "postcode")).Value = Server.HtmlEncode(PostCode.Text);
                 cmd.Parameters.Add(new SqlParameter("@orderstatecode", SqlDbType.VarChar, orderstatecodeParamSize, "code")).Value = State.processed.ToString();
-
                 int orderID = Convert.ToInt32(cmd.ExecuteScalar());
-
                 var ProductList = GetValues();
                 for (int i = 0; i < ProductList.Count; i++)
                 {
@@ -83,8 +87,6 @@ namespace training_rc
                 }                
                 scope.Complete();
                 return true;
-
-
             }
         }
         /// <summary>
