@@ -95,7 +95,7 @@
                     <asp:Label ID="quantity" runat="server" meta:resourcekey="Quantity"></asp:Label>  
                     <asp:TextBox CssClass="Quantity" ID="QuantityValue" runat="server" size="30"></asp:TextBox><br />                                   
                     <asp:RegularExpressionValidator CssClass="red" ValidationExpression="[\d+ 0-9]" ControlToValidate="QuantityValue" ID="RegularExpressionValidatorQuantity" runat="server" meta:resourcekey="RegularExpressionValidatorQuantityResource1"></asp:RegularExpressionValidator>                                 
-                    <asp:CustomValidator CssClass="red" ID="checkProductValidator" runat="server" ControlToValidate="QuantityValue" ValidateEmptyText="true"   ClientValidationFunction="CheckQuantity" ErrorMessage='<%# "Please Enter a Quantity for " + Eval("name") %>' />                              
+                    <br /><asp:CustomValidator CssClass="red" ID="checkProductValidator" runat="server" ControlToValidate="QuantityValue" ValidateEmptyText="true"   ClientValidationFunction="CheckQuantity" ErrorMessage='<%# "Please Enter a Quantity for " + Eval("name") %>' />                              
             </div>
         </ItemTemplate>
         <FooterTemplate>
