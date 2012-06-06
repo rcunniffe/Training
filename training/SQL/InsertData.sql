@@ -14,15 +14,15 @@ VALUES ('BlackBerry® Bold 9900  ', 'The Bold Touch is running the new BlackBerry
 INSERT INTO product (name, [description], price)
 VALUES ('Sony Ericsson Xperia X8 black', 'View the viral. Chat to your chums. Xperia™ X8 keeps you entertained. Infinitely. This is the middle child, between the Xperia X10 and the X10 mini.', 69.00)
 INSERT INTO [orderstate] (code, name)
-Values('processed','processed')
+Values('Processed','Processed')
 INSERT INTO [orderstate] (code, name)
-Values('received','received')
+Values('Received','Received')
 INSERT INTO [orderstate] (code, name)
-Values('readytogo','readytogo')
+Values('Readytogo','Readytogo')
 INSERT INTO [orderstate] (code, name)
-Values('delivering','delivering')
+Values('Delivering','Delivering')
 INSERT INTO [orderstate] (code, name)
-Values('delivered','delivered')
+Values('Delivered','Delivered')
  COMMIT TRAN
     END TRY
     BEGIN CATCH

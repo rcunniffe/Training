@@ -1,0 +1,5 @@
+D:\dev\training\Visor.ShoppingCart.DTO\bin\Debug\Visor.ShoppingCart.DTO.dll
+D:\dev\training\Visor.ShoppingCart.DTO\bin\Debug\Visor.ShoppingCart.DTO.pdb
+D:\dev\training\Visor.ShoppingCart.DTO\obj\Debug\ResolveAssemblyReference.cache
+D:\dev\training\Visor.ShoppingCart.DTO\obj\Debug\Visor.ShoppingCart.DTO.dll
+D:\dev\training\Visor.ShoppingCart.DTO\obj\Debug\Visor.ShoppingCart.DTO.pdb

@@ -41,7 +41,9 @@
     <Content Include="Scripts\jquery-1.4.1.js" />
     <Content Include="Scripts\jquery-1.4.1.min.js" />
     <Content Include="viewOrders.aspx" />
-    <Content Include="Web.config" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </Content>
@@ -87,7 +89,6 @@
     <Folder Include="App_Data\" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Account\Web.config" />
     <Content Include="Site.Master" />
   </ItemGroup>
   <ItemGroup>
@@ -130,6 +131,16 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="App_LocalResources\viewOrders.aspx.resx" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Visor.ShoppingCart.DAL\Visor.ShoppingCart.DAL.csproj">
+      <Project>{3DFE96D8-E04D-45CF-B070-E2B7F47A36F8}</Project>
+      <Name>Visor.ShoppingCart.DAL</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Visor.ShoppingCart.DTO\Visor.ShoppingCart.Core.csproj">
+      <Project>{645CC17A-880F-498D-9634-B5BA4E45F568}</Project>
+      <Name>Visor.ShoppingCart.Core</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" />

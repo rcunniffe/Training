@@ -10,6 +10,8 @@ using System.Transactions;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using Visor.ShoppingCart.DAL;
+using Visor.ShoppingCart.Core.DTO;
 
 
 namespace training_rc
@@ -26,62 +28,43 @@ namespace training_rc
         }
 
         /// <summary>
-        /// Creating enum to hold the different order states
-        /// </summary>
-        public enum State { 
-            processed,
-            received,
-            readytogo,
-            delivering,
-            delivered }
-
-        /// <summary>
         /// Inserts the person and order.
         /// </summary>
         /// <returns></returns>
         private bool InsertPersonAndOrder()
         {
-            using (TransactionScope scope = new TransactionScope())
-            using (SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["trainingConnectionString"].ConnectionString))
+            PersonDAL personDAL = new PersonDAL(ConfigurationManager.ConnectionStrings["trainingConnectionString"].ConnectionString);
+            PersonDTO personDTO = new PersonDTO();
+            personDTO.Firstname = Server.HtmlEncode(FirstName.Text);
+            personDTO.Surname = Server.HtmlEncode(Surname.Text);
+            personDTO.Address = new AddressDTO();
+            personDTO.Address.Address1 = Server.HtmlEncode(Address1.Text);
+            personDTO.Address.Address2 = Server.HtmlEncode(Address2.Text);
+            personDTO.Address.Address3 = Server.HtmlEncode(Address3.Text);
+            personDTO.Address.City = Server.HtmlEncode(City.Text);
+            personDTO.Address.Country = Server.HtmlEncode(Country.Text);
+            personDTO.Address.Postcode = Server.HtmlEncode(PostCode.Text);
+            try
             {
-                const int firstnameParamSize = 50;
-                const int surnameParamSize = 50;
-                const int address1ParamSize = 50;
-                const int address2ParamSize = 50;
-                const int address3ParamSize = 50;
-                const int countryParamSize = 50;
-                const int cityParamSize = 50;
-                const int postcodeParamSize = 50;
-                const int orderstatecodeParamSize = 50;
-                conn.Open();
-                SqlCommand cmd = new SqlCommand("usp_addperson", conn);
-                cmd.CommandType = CommandType.StoredProcedure;
-                cmd.Parameters.Add(new SqlParameter("@firstname", SqlDbType.VarChar, firstnameParamSize, "firstname")).Value = Server.HtmlEncode(FirstName.Text);
-                cmd.Parameters.Add(new SqlParameter("@surname", SqlDbType.VarChar, surnameParamSize, "surname")).Value = Server.HtmlEncode(Surname.Text);
-                cmd.Parameters.Add(new SqlParameter("@address1", SqlDbType.VarChar, address1ParamSize, "address1")).Value = Server.HtmlEncode(Address1.Text);
-                cmd.Parameters.Add(new SqlParameter("@address2", SqlDbType.VarChar, address2ParamSize, "address2")).Value = Server.HtmlEncode(Address2.Text);
-                cmd.Parameters.Add(new SqlParameter("@address3", SqlDbType.VarChar, address3ParamSize, "address3")).Value = Server.HtmlEncode(Address3.Text);
-                cmd.Parameters.Add(new SqlParameter("@country", SqlDbType.VarChar, countryParamSize, "country")).Value = Server.HtmlEncode(Country.Text);
-                cmd.Parameters.Add(new SqlParameter("@city", SqlDbType.VarChar, cityParamSize, "city")).Value = Server.HtmlEncode(City.Text);
-                cmd.Parameters.Add(new SqlParameter("@postcode", SqlDbType.VarChar, postcodeParamSize, "postcode")).Value = Server.HtmlEncode(PostCode.Text);
-                cmd.Parameters.Add(new SqlParameter("@orderstatecode", SqlDbType.VarChar, orderstatecodeParamSize, "code")).Value = State.processed.ToString();
-                int orderID = Convert.ToInt32(cmd.ExecuteScalar());
-                var ProductList = GetValues();
-                for (int i = 0; i < ProductList.Count; i++)
-                {
-                    SqlCommand cmdInsertProduct = new SqlCommand("usp_addorder", conn);
-                    cmdInsertProduct.CommandType = CommandType.StoredProcedure;
-                    cmdInsertProduct.Parameters.Add(new SqlParameter("@productID", SqlDbType.Int)).Value = ProductList[i].productID;
-                    cmdInsertProduct.Parameters.Add(new SqlParameter("@orderID", SqlDbType.Int)).Value = orderID;
-                    cmdInsertProduct.Parameters.Add(new SqlParameter("@quantity", SqlDbType.Int)).Value = ProductList[i].quantityValue;
-                    if ((int)cmdInsertProduct.ExecuteNonQuery() != 1)
-                    {
-                        throw new System.ArgumentException("An error occured when saving an order");
-                    }
-                }                
-                scope.Complete();
-                return true;
+                personDAL.Save(personDTO);
             }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            try
+            {
+                OrderDAL orderDAL = new OrderDAL(ConfigurationManager.ConnectionStrings["trainingConnectionString"].ConnectionString);
+                OrderDTO orderDTO = new OrderDTO();
+                orderDTO.PersonID = personDTO.PersonID;
+                orderDTO.OrderLines = GetValues();
+                orderDAL.Save(orderDTO);
+            }
+            catch (Exception ex)
+            {
+                throw ex; //new System.ArgumentException("An error occured when saving an order");
+            }
+            return true;
         }
         /// <summary>
         /// Validates the Form on placeOrders.aspx
@@ -90,23 +73,23 @@ namespace training_rc
         protected bool isValid()
         {
             return (!(string.IsNullOrWhiteSpace(FirstName.Text)) && !(string.IsNullOrWhiteSpace(Surname.Text)) && !(string.IsNullOrWhiteSpace(Address1.Text)) && !(string.IsNullOrWhiteSpace(PostCode.Text)) && !(string.IsNullOrWhiteSpace(City.Text)) && !(string.IsNullOrWhiteSpace(Country.Text)));
-        }       
+        }
         /// <summary>
         /// Creating a list of object type product. Adding to the list each time a quantity has been given for a product
         /// </summary>
         /// <returns></returns>
-        private List<product> GetValues()
+        private List<OrderLineDTO> GetValues()
         {
-            var ProductList = new List<product>();               
-                for (int i = 0; i < ProductListRepeater.Items.Count; i++)
+            var ProductList = new List<OrderLineDTO>();
+            for (int i = 0; i < ProductListRepeater.Items.Count; i++)
+            {
+                if (!(String.IsNullOrEmpty(((TextBox)ProductListRepeater.Controls[i + 1].FindControl("QuantityValue")).Text)))
                 {
-                    if (!(String.IsNullOrEmpty(((TextBox)ProductListRepeater.Controls[i + 1].FindControl("QuantityValue")).Text)))
-                    {                  
-                        int quantityValue = Convert.ToInt32(((TextBox)ProductListRepeater.Controls[i + 1].FindControl("QuantityValue")).Text);
-                        int productID = Convert.ToInt32(((Label)ProductListRepeater.Controls[i + 1].FindControl("productID")).Text);
-                        ProductList.Add(new product { productID = productID, quantityValue = quantityValue });
-                    }             
-                }                
+                    int quantityValue = Convert.ToInt32(((TextBox)ProductListRepeater.Controls[i + 1].FindControl("QuantityValue")).Text);
+                    int productID = Convert.ToInt32(((Label)ProductListRepeater.Controls[i + 1].FindControl("productID")).Text);
+                    ProductList.Add(new OrderLineDTO { ProductID = productID, Quantity = quantityValue });
+                }
+            }
             return ProductList;
         }
         /// <summary>
@@ -119,11 +102,11 @@ namespace training_rc
         {
             bool IsProductValid = false;
             for (int i = 0; i < ProductListRepeater.Items.Count; i++)
-            {                              
-                if (!(String.IsNullOrEmpty(((TextBox)ProductListRepeater.Controls[i+1].FindControl("QuantityValue")).Text)))
+            {
+                if (!(String.IsNullOrEmpty(((TextBox)ProductListRepeater.Controls[i + 1].FindControl("QuantityValue")).Text)))
                 {
                     IsProductValid = true;
-                }               
+                }
             }
             return IsProductValid;
         }

@@ -1,0 +1,7 @@
+D:\dev\training\Visor.ShoppingCart.DAL\obj\Debug\ResolveAssemblyReference.cache
+D:\dev\training\Visor.ShoppingCart.DAL\bin\Debug\Visor.ShoppingCart.DAL.dll
+D:\dev\training\Visor.ShoppingCart.DAL\bin\Debug\Visor.ShoppingCart.DAL.pdb
+D:\dev\training\Visor.ShoppingCart.DAL\bin\Debug\Visor.ShoppingCart.DTO.dll
+D:\dev\training\Visor.ShoppingCart.DAL\bin\Debug\Visor.ShoppingCart.DTO.pdb
+D:\dev\training\Visor.ShoppingCart.DAL\obj\Debug\Visor.ShoppingCart.DAL.dll
+D:\dev\training\Visor.ShoppingCart.DAL\obj\Debug\Visor.ShoppingCart.DAL.pdb
