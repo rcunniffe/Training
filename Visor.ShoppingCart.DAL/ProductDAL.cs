@@ -17,8 +17,7 @@ namespace Visor.ShoppingCart.DAL
         int PRODUCTDescription_IDX = 2;
         int PRODUCTPrice_IDX = 3;        
         public List<ProductDTO> Load()
-        {
-            using (TransactionScope scope = new TransactionScope())
+        {            
             using (SqlConnection conn = new SqlConnection(__connectionString))
             {
                 conn.Open();
@@ -36,7 +35,6 @@ namespace Visor.ShoppingCart.DAL
                     productDTO.Price = QueryReader.GetDecimal(PRODUCTPrice_IDX);
                     productDTOList.Add(productDTO);
                 }
-
                 return productDTOList.ToList();
             }
         }

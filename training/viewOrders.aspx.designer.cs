@@ -13,15 +13,6 @@ namespace training_rc {
     public partial class viewOrders {
         
         /// <summary>
-        /// OrdersList control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.SqlDataSource OrdersList;
-        
-        /// <summary>
         /// OrderLineHeader control.
         /// </summary>
         /// <remarks>
@@ -67,12 +58,12 @@ namespace training_rc {
         protected global::System.Web.UI.WebControls.Label OrderDetailsTitle;
         
         /// <summary>
-        /// OrderLine control.
+        /// OrderLineGrid control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.GridView OrderLine;
+        protected global::System.Web.UI.WebControls.GridView OrderLineGrid;
     }
 }

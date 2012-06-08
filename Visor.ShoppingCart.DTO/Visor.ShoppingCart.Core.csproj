@@ -8,8 +8,8 @@
     <ProjectGuid>{645CC17A-880F-498D-9634-B5BA4E45F568}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Visor.ShoppingCart.DTO</RootNamespace>
-    <AssemblyName>Visor.ShoppingCart.DTO</AssemblyName>
+    <RootNamespace>Visor.ShoppingCart.Core</RootNamespace>
+    <AssemblyName>Visor.ShoppingCart.Core</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -43,6 +43,7 @@
     <Compile Include="DTO\AddressDTO.cs" />
     <Compile Include="DTO\OrderDTO.cs" />
     <Compile Include="DTO\OrderLineDTO.cs" />
+    <Compile Include="DTO\ProductDTO.cs" />
     <Compile Include="Enum\OrderState.cs" />
     <Compile Include="DTO\PersonDTO.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

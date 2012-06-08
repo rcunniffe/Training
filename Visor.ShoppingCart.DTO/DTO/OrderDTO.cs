@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using Visor.ShoppingCart.Core.Enum;
 
 namespace Visor.ShoppingCart.Core.DTO
 {
@@ -9,7 +10,7 @@ namespace Visor.ShoppingCart.Core.DTO
     {
         public int OrderID { get; set; }
         public int PersonID { get; set; }
-        public string orderstate_name { get; set; }
+        public OrderState OrderStateLabel { get; set; }
         public List<OrderLineDTO> OrderLines { get; set; }
     }
 }

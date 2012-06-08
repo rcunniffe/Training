@@ -13,7 +13,6 @@ namespace Visor.ShoppingCart.DAL
     public class OrderDAL
     {
         const int orderstatecodeParamSize = 50;
-
         private String __connectionString;        
         
         public void Save(OrderDTO order)
@@ -44,7 +43,12 @@ namespace Visor.ShoppingCart.DAL
 
         public List<OrderDTO> Load()
         {
-            using (TransactionScope scope = new TransactionScope())
+            int PERSONID_IDX = 0;
+            int ORDERID_IDX = 1;
+            int ORDERSTATE_IDX = 2;
+            int ORDERLINEID_IDX = 3;
+            int PRODUCTID_IDX = 4;
+            int QUANTITY_IDX = 5;           
             using (SqlConnection conn = new SqlConnection(__connectionString))
             {
                 conn.Open();             
@@ -56,21 +60,19 @@ namespace Visor.ShoppingCart.DAL
                 while (QueryReader.Read())
                 {
                     OrderDTO orderDTO = new OrderDTO();
-
-                    orderDTO.PersonID = Convert.ToInt32((QueryReader.GetValue(0)));
-                    orderDTO.OrderID =  Convert.ToInt32((QueryReader.GetValue(1)));
-                    orderDTO.orderstate_name = QueryReader.GetValue(2).ToString();
-                    
-                    orderDTO.OrderLines = new List<OrderLineDTO>();                    
-                    
-                    int orderlineID = Convert.ToInt32((QueryReader.GetValue(3)));
-                    int productID = Convert.ToInt32((QueryReader.GetValue(4)));
-                    int quantity = Convert.ToInt32((QueryReader.GetValue(5)));
-                    //orderDTO.OrderLines.Add(new OrderLineDTO { OrderLineID = orderlineID, Quantity = quantity, orderDTO.OrderLines.Add(new ProductDTO { ProductID = productID}) };                    
+                    orderDTO.PersonID = (QueryReader.GetInt32(PERSONID_IDX));
+                    orderDTO.OrderID = (QueryReader.GetInt32(ORDERID_IDX));
+                    OrderState orderStateParsed;
+                    if (!Enum.TryParse<OrderState>(QueryReader.GetString(ORDERSTATE_IDX), out orderStateParsed))
+                        throw new InvalidCastException();
+                    orderDTO.OrderStateLabel = orderStateParsed;                    
+                    orderDTO.OrderLines = new List<OrderLineDTO>();
+                    int orderlineID = (QueryReader.GetInt32(ORDERLINEID_IDX));
+                    int productID = (QueryReader.GetInt32(PRODUCTID_IDX));
+                    int quantity = (QueryReader.GetInt32(QUANTITY_IDX));                    
                     orderDTO.OrderLines.Add(new OrderLineDTO { OrderLineID = orderlineID, Quantity = quantity, Product = (new ProductDTO { ProductID = productID }) });
                     orderDTOList.Add(orderDTO);
                 }
-
                 return orderDTOList;
             }
         }

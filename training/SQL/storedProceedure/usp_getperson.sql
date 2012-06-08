@@ -25,7 +25,7 @@ CREATE PROCEDURE [dbo].[usp_getperson]
 	-- Add the parameters for the stored procedure here
 AS
 BEGIN
-	Select person.firstname, person.surname,[address].addressID, [address].address1, [address].address2, [address].address3, [postcode].postcode, city.city, country.country
+	Select person.personID, person.firstname, person.surname,[address].addressID, [address].address1, [address].address2, [address].address3, [postcode].postcode, city.city, country.country
     from [address]
     INNER JOIN [personaddress] ON [address].addressID = personaddress.addressID
     Join person ON personaddress.personaddressID = person.personID

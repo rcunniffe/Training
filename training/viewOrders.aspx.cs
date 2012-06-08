@@ -18,28 +18,42 @@ namespace training_rc
 {
     public partial class viewOrders : System.Web.UI.Page
     {
-        /*void Page_Load(object sender, EventArgs e)
+        void Page_Load(object sender, EventArgs e)
         {
             try
             {
-                OrderDAL orderDAL = new OrderDAL(ConfigurationManager.ConnectionStrings["trainingConnectionString"].ConnectionString);
-                OrderDTO orderDTO = new OrderDTO();
-                orderDAL.Load();
-                PersonDAL personDAL = new PersonDAL(ConfigurationManager.ConnectionStrings["trainingConnectionString"].ConnectionString);
-                personDAL.Load();
-                OrderLine.DataSource = orderDAL.Load();
-                OrderLine.DataBind();
-                OrderDetailsTitle.Text = "Order Details";
-                OrderDetailsTitle.Visible = true;
-
+                if (!Page.IsCallback && !Page.IsPostBack)
+                {
+                    OrderDAL orderDAL = new OrderDAL(ConfigurationManager.ConnectionStrings["trainingConnectionString"].ConnectionString);
+                    PersonDAL personDAL = new PersonDAL(ConfigurationManager.ConnectionStrings["trainingConnectionString"].ConnectionString);
+                    ViewOrders.DataSource = LoadOrders(orderDAL, personDAL);
+                    ViewOrders.DataBind();
+                    OrderDetailsTitle.Text = "Order Details";
+                    OrderDetailsTitle.Visible = true;
+                }
             }
             catch (Exception ex)
             {
                 throw ex;
             }
-        }  
-         */
+        }
 
+        private IEnumerable LoadOrders(OrderDAL orderDAL, PersonDAL personDAL)
+        {
+            return (from orderdto in orderDAL.Load().ToList()
+                    join persondto in personDAL.Load().ToList() on orderdto.PersonID equals persondto.PersonID
+                    select new {OrderID = orderdto.OrderID, 
+                                FirstName = persondto.Firstname,
+                                Surname = persondto.Surname,
+                                Address1 = persondto.Address.Address1,
+                                Address2 = persondto.Address.Address2,
+                                Address3 = persondto.Address.Address3,
+                                City = persondto.Address.City,
+                                Country = persondto.Address.Country,
+                                PostCode = persondto.Address.Postcode,
+                                OrderStateLabel = orderdto.OrderStateLabel
+                    });
+        }
         /// <summary>
         /// Populates the order line grid.
         /// </summary>
