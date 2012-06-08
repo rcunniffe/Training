@@ -53,7 +53,7 @@ CREATE TABLE [product]
 (	productID int IDENTITY(1,1) Primary Key,
 	name VARCHAR (300) NOT NULL,
 	[description] VARCHAR (600) NOT NULL,
-	price FLOAT  Not Null);
+	price  numeric(18,2) Not Null);
 GO
 CREATE TABLE [personaddress]
 (	personaddressID int IDENTITY(1,1) Primary Key,

@@ -19,6 +19,24 @@ namespace training_rc
     public partial class PlaceOrders : System.Web.UI.Page
     {
         /// <summary>
+        /// Handles the Load event of the Page control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="System.EventArgs"/> instance containing the event data.</param>
+        void Page_Load(object sender, EventArgs e)
+        {
+            try
+            {
+                ProductDAL productDAL = new ProductDAL(ConfigurationManager.ConnectionStrings["trainingConnectionString"].ConnectionString);                
+                ProductListRepeater.DataSource = productDAL.Load();
+                ProductListRepeater.DataBind();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }           
+        /// <summary>
         /// Creating a product class to store the values of each product selected by user
         /// </summary>
         private class product
@@ -87,7 +105,7 @@ namespace training_rc
                 {
                     int quantityValue = Convert.ToInt32(((TextBox)ProductListRepeater.Controls[i + 1].FindControl("QuantityValue")).Text);
                     int productID = Convert.ToInt32(((Label)ProductListRepeater.Controls[i + 1].FindControl("productID")).Text);
-                    ProductList.Add(new OrderLineDTO { ProductID = productID, Quantity = quantityValue });
+                    ProductList.Add(new OrderLineDTO { Product = (new ProductDTO { ProductID = productID }), Quantity = quantityValue });
                 }
             }
             return ProductList;
@@ -140,6 +158,5 @@ namespace training_rc
             }
 
         }
-
     }
 }

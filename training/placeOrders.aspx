@@ -77,12 +77,8 @@
             <div>
             <h1>
                 Please Choose your products
-            </h1>
-        <asp:SqlDataSource ID="ProductListingDataSource" runat="server" 
-                ConnectionString="<%$ ConnectionStrings:trainingConnectionString %>" 
-                
-                    SelectCommand="SELECT  [productID], [name], [description], [price] FROM [product]"></asp:SqlDataSource>        
-        <asp:Repeater ID="ProductListRepeater" runat="server" DataSourceID="ProductListingDataSource" >
+            </h1>               
+        <asp:Repeater ID="ProductListRepeater" runat="server" >
             <HeaderTemplate>
             <div style="">            
         </HeaderTemplate>

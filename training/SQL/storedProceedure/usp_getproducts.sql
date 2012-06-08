@@ -19,16 +19,12 @@ GO
 -- Create date: <Create Date,,>
 -- Description:	<Description,,>
 -- =============================================
-DROP PROCEDURE [dbo].[usp_getorderline]
+DROP PROCEDURE [dbo].[usp_getproducts]
 Go
-CREATE PROCEDURE [dbo].[usp_getorderline]
+CREATE PROCEDURE [dbo].[usp_getproducts]
 	-- Add the parameters for the stored procedure here
-	@orderID int
 AS
 BEGIN
-select orderline.orderlineID, product.productID, product.name, product.[description], product.price, quantity
-from orderline
-INNER JOIN [product] ON orderline.productID = product.productID
-Where [orderline].orderID = @orderID
+SELECT  [productID], [name], [description], [price] FROM [product]
 END
 GO

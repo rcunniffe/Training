@@ -14,7 +14,8 @@ namespace Visor.ShoppingCart.DAL
     {
         const int orderstatecodeParamSize = 50;
 
-        private String __connectionString;
+        private String __connectionString;        
+        
         public void Save(OrderDTO order)
         {
             using (TransactionScope scope = new TransactionScope())
@@ -32,12 +33,45 @@ namespace Visor.ShoppingCart.DAL
                 {
                     cmdOrderLine.CommandType = CommandType.StoredProcedure;
                     cmdOrderLine.Parameters.Clear();
-                    cmdOrderLine.Parameters.Add(new SqlParameter("@orderID", SqlDbType.Int)).Value = order.OrderID;
-                    cmdOrderLine.Parameters.Add(new SqlParameter("@productID", SqlDbType.Int)).Value = order.OrderLines[i].ProductID;
+                    cmdOrderLine.Parameters.Add(new SqlParameter("@orderID", SqlDbType.Int)).Value = order.OrderID;                    
+                    cmdOrderLine.Parameters.Add(new SqlParameter("@productID", SqlDbType.Int)).Value = order.OrderLines[i].Product.ProductID;
                     cmdOrderLine.Parameters.Add(new SqlParameter("@quantity", SqlDbType.Int)).Value = order.OrderLines[i].Quantity;
                     order.OrderLines[i].OrderLineID = Convert.ToInt32(cmdOrderLine.ExecuteScalar());
                 }                    
                 scope.Complete();
+            }
+        }
+
+        public List<OrderDTO> Load()
+        {
+            using (TransactionScope scope = new TransactionScope())
+            using (SqlConnection conn = new SqlConnection(__connectionString))
+            {
+                conn.Open();             
+                SqlCommand getOrderCmd = new SqlCommand("usp_getorder", conn);
+                getOrderCmd.CommandType = CommandType.StoredProcedure;
+                SqlDataReader QueryReader = getOrderCmd.ExecuteReader();
+                List<OrderDTO> orderDTOList = new List<OrderDTO>();                
+
+                while (QueryReader.Read())
+                {
+                    OrderDTO orderDTO = new OrderDTO();
+
+                    orderDTO.PersonID = Convert.ToInt32((QueryReader.GetValue(0)));
+                    orderDTO.OrderID =  Convert.ToInt32((QueryReader.GetValue(1)));
+                    orderDTO.orderstate_name = QueryReader.GetValue(2).ToString();
+                    
+                    orderDTO.OrderLines = new List<OrderLineDTO>();                    
+                    
+                    int orderlineID = Convert.ToInt32((QueryReader.GetValue(3)));
+                    int productID = Convert.ToInt32((QueryReader.GetValue(4)));
+                    int quantity = Convert.ToInt32((QueryReader.GetValue(5)));
+                    //orderDTO.OrderLines.Add(new OrderLineDTO { OrderLineID = orderlineID, Quantity = quantity, orderDTO.OrderLines.Add(new ProductDTO { ProductID = productID}) };                    
+                    orderDTO.OrderLines.Add(new OrderLineDTO { OrderLineID = orderlineID, Quantity = quantity, Product = (new ProductDTO { ProductID = productID }) });
+                    orderDTOList.Add(orderDTO);
+                }
+
+                return orderDTOList;
             }
         }
 

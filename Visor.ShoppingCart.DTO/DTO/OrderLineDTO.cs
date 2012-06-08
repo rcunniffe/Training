@@ -7,8 +7,9 @@ namespace Visor.ShoppingCart.Core.DTO
 {
     public class OrderLineDTO
     {
-        public int OrderLineID;
-        public int ProductID;
-        public int Quantity;        
+        public int OrderLineID { get; set;}
+        public int OrderID { get; set; }
+        public ProductDTO Product { get; set; }
+        public int Quantity { get; set; }
     }
 }

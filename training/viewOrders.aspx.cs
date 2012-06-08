@@ -10,11 +10,36 @@ using System.Data.SqlClient;
 using System.Reflection;
 using System.Resources;
 using System.Transactions;
+using Visor.ShoppingCart.DAL;
+using Visor.ShoppingCart.Core.DTO;
+using System.Collections;
 
 namespace training_rc
 {
     public partial class viewOrders : System.Web.UI.Page
     {
+        /*void Page_Load(object sender, EventArgs e)
+        {
+            try
+            {
+                OrderDAL orderDAL = new OrderDAL(ConfigurationManager.ConnectionStrings["trainingConnectionString"].ConnectionString);
+                OrderDTO orderDTO = new OrderDTO();
+                orderDAL.Load();
+                PersonDAL personDAL = new PersonDAL(ConfigurationManager.ConnectionStrings["trainingConnectionString"].ConnectionString);
+                personDAL.Load();
+                OrderLine.DataSource = orderDAL.Load();
+                OrderLine.DataBind();
+                OrderDetailsTitle.Text = "Order Details";
+                OrderDetailsTitle.Visible = true;
+
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }  
+         */
+
         /// <summary>
         /// Populates the order line grid.
         /// </summary>
@@ -23,29 +48,13 @@ namespace training_rc
         /// <param name="orderID">The order ID.</param>
         public void populateOrderLineGrid(object sender, EventArgs e, int orderID)
         {
-            using (TransactionScope scope = new TransactionScope())
-            using (SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["trainingConnectionString"].ConnectionString))
-            {                
-                DataSet ds = new DataSet();
-                SqlDataAdapter adapter = new SqlDataAdapter(); 
-                SqlCommand getOrderLineCmd = new SqlCommand("usp_getorderline", conn);
-                getOrderLineCmd.CommandType = CommandType.StoredProcedure;
-                getOrderLineCmd.Parameters.Add("@orderID", SqlDbType.Int);
-                getOrderLineCmd.Parameters["@orderID"].Value = orderID;                            
-                adapter.SelectCommand = getOrderLineCmd;
-                adapter.Fill(ds);               
-                if (ds.Tables.Count > 0)
-                {
-                    OrderLine.DataSource = ds;
-                    OrderLine.DataBind();
-                    OrderDetailsTitle.Text = "Order Details";
-                    OrderDetailsTitle.Visible = true;
-                }
-                else
-                {
-                    Response.Write("<script type='text/javascript'>alert('cant connect to database');</script>");
-                }
-            }     
+            OrderLineDAL orderLineDAL = new OrderLineDAL(ConfigurationManager.ConnectionStrings["trainingConnectionString"].ConnectionString);
+            OrderLineGrid.AutoGenerateColumns = false;            
+            OrderLineGrid.DataSource = orderLineDAL.Load(orderID).ToList();
+            OrderLineGrid.DataBind();
+            OrderDetailsTitle.Text = "Order Details";
+            OrderDetailsTitle.Visible = true;
+           
         }       
         /// <summary>
         /// Handles the RowCommand event of the PopulateOrderline control.
@@ -61,7 +70,6 @@ namespace training_rc
                 int orderID = Convert.ToInt32(Server.HtmlDecode(row.Cells[0].Text));
                 populateOrderLineGrid(sender, e, orderID);
             }
-        }       
-        
+        }        
     }
 }
