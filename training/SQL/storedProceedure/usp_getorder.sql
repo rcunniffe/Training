@@ -8,9 +8,8 @@ Go
 CREATE PROCEDURE [dbo].[usp_getorder]
 AS
 BEGIN
-select orderline.orderID, personID,orderstate.name, orderlineID, productID, quantity
-from orderline
-INNER JOIN [order] ON orderline.orderID = [order].orderID
-JOIN [orderstate] ON [order].orderstateID = [orderstate].orderstateID
+select [order].orderID, personID,orderstate.name
+from [order]
+INNER JOIN [orderstate] ON [order].orderstateID = [orderstate].orderstateID
 END
 GO

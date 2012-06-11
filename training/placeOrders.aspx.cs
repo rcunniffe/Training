@@ -88,7 +88,7 @@ namespace training_rc
                 }
                 catch (Exception ex)
                 {
-                    throw ex; //new System.ArgumentException("An error occured when saving an order");
+                    throw ex;
                 }
                 scope.Complete();
             }

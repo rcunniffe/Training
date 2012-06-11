@@ -14,7 +14,7 @@ namespace Visor.ShoppingCart.DAL
         private String __connectionString;
         public List<OrderLineDTO> Load(int orderID)
         {
-            const int ORDERLINEDTOOrderID_IDX = 0;
+            const int ORDERLINEDTOORDERID_IDX = 0;
             const int PRODUCTID_IDX = 1;
             const int PRODUCTNAME_IDX = 2;
             const int PRODUCTDescription_IDX = 3;
@@ -39,7 +39,7 @@ namespace Visor.ShoppingCart.DAL
                     product.Name = QueryReader.GetString(PRODUCTNAME_IDX);
                     product.Description = QueryReader.GetString(PRODUCTDescription_IDX);
                     product.Price = QueryReader.GetDecimal(PRODUCTPrice_IDX);
-                    orderLineDTO.OrderID = QueryReader.GetInt32(ORDERLINEDTOOrderID_IDX);
+                    orderLineDTO.OrderID = QueryReader.GetInt32(ORDERLINEDTOORDERID_IDX);
                     orderLineDTO.Product = product;
                     orderLineDTO.Quantity = (QueryReader.GetInt32(ORDERLINEDTOQuantity_IDX));
                     orderLineDTOList.Add(orderLineDTO);

@@ -12,10 +12,10 @@ namespace Visor.ShoppingCart.DAL
     public class ProductDAL
     {
         private String __connectionString;
-        int PRODUCTID_IDX = 0;
-        int PRODUCTNAME_IDX = 1;
-        int PRODUCTDESCRIPTION_IDX = 2;
-        int PRODUCTPRICE_IDX = 3;        
+        const int PRODUCTID_IDX = 0;
+        const int PRODUCTNAME_IDX = 1;
+        const int PRODUCTDESCRIPTION_IDX = 2;
+        const int PRODUCTPRICE_IDX = 3;        
         public List<ProductDTO> Load()
         {            
             using (SqlConnection conn = new SqlConnection(__connectionString))
@@ -35,7 +35,7 @@ namespace Visor.ShoppingCart.DAL
                     productDTO.Price = QueryReader.GetDecimal(PRODUCTPRICE_IDX);
                     productDTOList.Add(productDTO);
                 }
-                return productDTOList.ToList(); ;
+                return productDTOList.ToList();
             }
         }
         
