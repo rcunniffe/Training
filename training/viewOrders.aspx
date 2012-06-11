@@ -11,15 +11,15 @@
             onrowcommand="PopulateOrderline_RowCommand">
         <AlternatingRowStyle BackColor="White" ForeColor="#284775" />
         <Columns>
-            <asp:BoundField DataField="OrderID" HeaderText="Order ID" InsertVisible="False" ReadOnly="True" SortExpression="orderID" meta:resourcekey="BoundFieldOrderID" />
-            <asp:BoundField DataField="FirstName" SortExpression="firstname" meta:resourcekey="BoundFieldFirstName" />
-            <asp:BoundField DataField="Surname"  SortExpression="surname" meta:resourcekey="BoundFieldSurname" />
-            <asp:BoundField DataField="Address1"  SortExpression="address1" meta:resourcekey="BoundFieldAddress1" />  
-            <asp:BoundField DataField="Address2"  SortExpression="address2" meta:resourcekey="BoundFieldAddress2" />  
-            <asp:BoundField DataField="Address3"  SortExpression="address3" meta:resourcekey="BoundFieldAddress3" /> 
-            <asp:BoundField DataField="Postcode"  SortExpression="postcode" meta:resourcekey="BoundFieldPostCode" /> 
-            <asp:BoundField DataField="City"  SortExpression="city" meta:resourcekey="BoundFieldCity" /> 
-            <asp:BoundField DataField="Country" SortExpression="country" meta:resourcekey="BoundFieldCountry" />   
+            <asp:BoundField DataField="OrderID" HeaderText="OrderID" InsertVisible="False" ReadOnly="True" SortExpression="orderID" meta:resourcekey="BoundFieldOrderID" />
+            <asp:BoundField DataField="FirstName" SortExpression="FirstName" meta:resourcekey="BoundFieldFirstName" />
+            <asp:BoundField DataField="Surname"  SortExpression="Surname" meta:resourcekey="BoundFieldSurname" />
+            <asp:BoundField DataField="Address1"  SortExpression="Address1" meta:resourcekey="BoundFieldAddress1" />  
+            <asp:BoundField DataField="Address2"  SortExpression="Address2" meta:resourcekey="BoundFieldAddress2" />  
+            <asp:BoundField DataField="Address3"  SortExpression="Address3" meta:resourcekey="BoundFieldAddress3" /> 
+            <asp:BoundField DataField="Postcode"  SortExpression="Postcode" meta:resourcekey="BoundFieldPostCode" /> 
+            <asp:BoundField DataField="City"  SortExpression="City" meta:resourcekey="BoundFieldCity" /> 
+            <asp:BoundField DataField="Country" SortExpression="Country" meta:resourcekey="BoundFieldCountry" />   
             <asp:BoundField DataField="OrderStateLabel" SortExpression="name" meta:resourcekey="BoundFieldOrderState" />            
             <asp:buttonfield buttontype="Link" commandname="getOrderID" text="View Order"/>       
         </Columns>
@@ -44,13 +44,13 @@
                 <asp:BoundField DataField="OrderID"  meta:resourcekey="BoundFieldName" />
                 <asp:TemplateField HeaderText="ProductID">
                     <ItemTemplate>
-                        <%#DataBinder.Eval(Container.DataItem,"Product.name")%>
+                        <%#DataBinder.Eval(Container.DataItem,"Product.Name")%>
                     </ItemTemplate>
                 </asp:TemplateField>    
                 <asp:BoundField DataField="Quantity"  meta:resourcekey="BoundFieldQuantity" />
                 <asp:TemplateField HeaderText="Price">
                     <ItemTemplate>
-                        <%#DataBinder.Eval(Container.DataItem,"Product.price")%>
+                        <%#DataBinder.Eval(Container.DataItem,"Product.Price")%>
                     </ItemTemplate>
                 </asp:TemplateField>                  
             </Columns>

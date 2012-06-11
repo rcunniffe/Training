@@ -10,14 +10,14 @@ namespace Visor.ShoppingCart.DAL
 {
     public class PersonDAL
     {
-        const int firstnameParamSize = 50;
-        const int surnameParamSize = 50;
-        const int address1ParamSize = 50;
-        const int address2ParamSize = 50;
-        const int address3ParamSize = 50;
-        const int countryParamSize = 50;
-        const int cityParamSize = 50;
-        const int postcodeParamSize = 50;
+        const int FIRSTNAMEPARAMSIZE = 50;
+        const int SURNAMEPARAMSIZE = 50;
+        const int ADDRESS1PARAMSIZE = 50;
+        const int ADDRESS2PARAMSIZE = 50;
+        const int ADDRESS3PARAMSIZE = 50;
+        const int COUNTRYPARAMSIZE = 50;
+        const int CITYPARAMSIZE = 50;
+        const int POSTCODEPARAMSIZE = 50;
 
         private String __connectionString;
 
@@ -26,23 +26,21 @@ namespace Visor.ShoppingCart.DAL
         /// </summary>
         /// <param name="person">The person.</param>
         public void Save(PersonDTO person)
-        {
-            using (TransactionScope scope = new TransactionScope())
+        {           
             using (SqlConnection conn = new SqlConnection(__connectionString))
             {                
                 conn.Open();
                 SqlCommand cmd = new SqlCommand("usp_addperson", conn);
                 cmd.CommandType = CommandType.StoredProcedure;
-                cmd.Parameters.Add(new SqlParameter("@firstname", SqlDbType.VarChar, firstnameParamSize, "firstname")).Value = person.Firstname;
-                cmd.Parameters.Add(new SqlParameter("@surname", SqlDbType.VarChar, surnameParamSize, "surname")).Value = person.Surname;
-                cmd.Parameters.Add(new SqlParameter("@address1", SqlDbType.VarChar, address1ParamSize, "address1")).Value = person.Address.Address1;
-                cmd.Parameters.Add(new SqlParameter("@address2", SqlDbType.VarChar, address2ParamSize, "address2")).Value = person.Address.Address2;
-                cmd.Parameters.Add(new SqlParameter("@address3", SqlDbType.VarChar, address3ParamSize, "address3")).Value = person.Address.Address3;
-                cmd.Parameters.Add(new SqlParameter("@country", SqlDbType.VarChar, countryParamSize, "country")).Value = person.Address.Country;
-                cmd.Parameters.Add(new SqlParameter("@city", SqlDbType.VarChar, cityParamSize, "city")).Value = person.Address.City;
-                cmd.Parameters.Add(new SqlParameter("@postcode", SqlDbType.VarChar, postcodeParamSize, "postcode")).Value = person.Address.Postcode;
-                person.PersonID = Convert.ToInt32(cmd.ExecuteScalar());
-                scope.Complete();
+                cmd.Parameters.Add(new SqlParameter("@firstname", SqlDbType.VarChar, FIRSTNAMEPARAMSIZE, "firstname")).Value = person.Firstname;
+                cmd.Parameters.Add(new SqlParameter("@surname", SqlDbType.VarChar, SURNAMEPARAMSIZE, "surname")).Value = person.Surname;
+                cmd.Parameters.Add(new SqlParameter("@address1", SqlDbType.VarChar, ADDRESS1PARAMSIZE, "address1")).Value = person.Address.Address1;
+                cmd.Parameters.Add(new SqlParameter("@address2", SqlDbType.VarChar, ADDRESS2PARAMSIZE, "address2")).Value = person.Address.Address2;
+                cmd.Parameters.Add(new SqlParameter("@address3", SqlDbType.VarChar, ADDRESS3PARAMSIZE, "address3")).Value = person.Address.Address3;
+                cmd.Parameters.Add(new SqlParameter("@country", SqlDbType.VarChar, COUNTRYPARAMSIZE, "country")).Value = person.Address.Country;
+                cmd.Parameters.Add(new SqlParameter("@city", SqlDbType.VarChar, CITYPARAMSIZE, "city")).Value = person.Address.City;
+                cmd.Parameters.Add(new SqlParameter("@postcode", SqlDbType.VarChar, POSTCODEPARAMSIZE, "postcode")).Value = person.Address.Postcode;
+                person.PersonID = Convert.ToInt32(cmd.ExecuteScalar());                
             }
         }
 
@@ -84,16 +82,16 @@ namespace Visor.ShoppingCart.DAL
                 {
                     PersonDTO personDTO = new PersonDTO();
                     personDTO.PersonID = queryReader.GetInt32(PERSON_PERSONID_IDX);
-                    personDTO.Firstname = queryReader.GetValue(PERSONFIRSTNAME_IDX).ToString();
-                    personDTO.Surname = queryReader.GetValue(PERSONSURNAME_IDX).ToString();                    
+                    personDTO.Firstname = queryReader.GetString(PERSONFIRSTNAME_IDX).ToString();
+                    personDTO.Surname = queryReader.GetString(PERSONSURNAME_IDX).ToString();                    
                     personDTO.Address = new AddressDTO();
-                    personDTO.Address.AddressID = Convert.ToInt32((queryReader.GetValue(PERSONADDRESSID_IDX)));
-                    personDTO.Address.Address1 = queryReader.GetValue(PERSONADDRESS1_IDX).ToString();
-                    personDTO.Address.Address2 = queryReader.GetValue(PERSONADDRESS2_IDX).ToString();
-                    personDTO.Address.Address3 = queryReader.GetValue(PERSONADDRESS3_IDX).ToString();
-                    personDTO.Address.City = queryReader.GetValue(PERSONCITY_IDX).ToString();
-                    personDTO.Address.Country = queryReader.GetValue(PERSONCOUNTRY_IDX).ToString();
-                    personDTO.Address.Postcode = queryReader.GetValue(PERSONPOSTCODE_IDX).ToString();
+                    personDTO.Address.AddressID = (queryReader.GetInt32(PERSONADDRESSID_IDX));
+                    personDTO.Address.Address1 = queryReader.GetString(PERSONADDRESS1_IDX).ToString();
+                    personDTO.Address.Address2 = queryReader.GetString(PERSONADDRESS2_IDX).ToString();
+                    personDTO.Address.Address3 = queryReader.GetString(PERSONADDRESS3_IDX).ToString();
+                    personDTO.Address.City = queryReader.GetString(PERSONCITY_IDX).ToString();
+                    personDTO.Address.Country = queryReader.GetString(PERSONCOUNTRY_IDX).ToString();
+                    personDTO.Address.Postcode = queryReader.GetString(PERSONPOSTCODE_IDX).ToString();
                     personDTOList.Add(personDTO);
                 }
                 return personDTOList;

@@ -20,23 +20,9 @@ namespace training_rc
     {
         void Page_Load(object sender, EventArgs e)
         {
-            try
-            {
-                if (!Page.IsCallback && !Page.IsPostBack)
-                {
-                    OrderDAL orderDAL = new OrderDAL(ConfigurationManager.ConnectionStrings["trainingConnectionString"].ConnectionString);
-                    PersonDAL personDAL = new PersonDAL(ConfigurationManager.ConnectionStrings["trainingConnectionString"].ConnectionString);
-                    ViewOrders.DataSource = LoadOrders(orderDAL, personDAL);
-                    ViewOrders.DataBind();
-                    OrderDetailsTitle.Text = "Order Details";
-                    OrderDetailsTitle.Visible = true;
-                }
-            }
-            catch (Exception ex)
-            {
-                throw ex;
-            }
+            populateViewOrdersGrid();
         }
+
 
         private IEnumerable LoadOrders(OrderDAL orderDAL, PersonDAL personDAL)
         {
@@ -53,6 +39,26 @@ namespace training_rc
                                 PostCode = persondto.Address.Postcode,
                                 OrderStateLabel = orderdto.OrderStateLabel
                     });
+        }
+
+        private void populateViewOrdersGrid()
+        {
+            try
+            {
+                if (!Page.IsCallback && !Page.IsPostBack)
+                {
+                    OrderDAL orderDAL = new OrderDAL(ConfigurationManager.ConnectionStrings["trainingConnectionString"].ConnectionString);
+                    PersonDAL personDAL = new PersonDAL(ConfigurationManager.ConnectionStrings["trainingConnectionString"].ConnectionString);
+                    ViewOrders.DataSource = LoadOrders(orderDAL, personDAL);
+                    ViewOrders.DataBind();
+                    OrderDetailsTitle.Text = "Order Details";
+                    OrderDetailsTitle.Visible = true;
+                }
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
         }
         /// <summary>
         /// Populates the order line grid.

@@ -25,16 +25,8 @@ namespace training_rc
         /// <param name="e">The <see cref="System.EventArgs"/> instance containing the event data.</param>
         void Page_Load(object sender, EventArgs e)
         {
-            try
-            {
-                ProductDAL productDAL = new ProductDAL(ConfigurationManager.ConnectionStrings["trainingConnectionString"].ConnectionString);                
-                ProductListRepeater.DataSource = productDAL.Load();
-                ProductListRepeater.DataBind();
-            }
-            catch (Exception ex)
-            {
-                throw ex;
-            }
+            if(!Page.IsCallback && !Page.IsPostBack)
+                populateProductListRepeater();
         }           
         /// <summary>
         /// Creating a product class to store the values of each product selected by user
@@ -45,42 +37,60 @@ namespace training_rc
             public int quantityValue { get; set; }
         }
 
+        private void populateProductListRepeater()
+        {
+            try
+            {
+                ProductDAL productDAL = new ProductDAL(ConfigurationManager.ConnectionStrings["trainingConnectionString"].ConnectionString);
+                ProductListRepeater.DataSource = productDAL.Load();
+                ProductListRepeater.DataBind();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
         /// <summary>
         /// Inserts the person and order.
         /// </summary>
         /// <returns></returns>
         private bool InsertPersonAndOrder()
         {
-            PersonDAL personDAL = new PersonDAL(ConfigurationManager.ConnectionStrings["trainingConnectionString"].ConnectionString);
-            PersonDTO personDTO = new PersonDTO();
-            personDTO.Firstname = Server.HtmlEncode(FirstName.Text);
-            personDTO.Surname = Server.HtmlEncode(Surname.Text);
-            personDTO.Address = new AddressDTO();
-            personDTO.Address.Address1 = Server.HtmlEncode(Address1.Text);
-            personDTO.Address.Address2 = Server.HtmlEncode(Address2.Text);
-            personDTO.Address.Address3 = Server.HtmlEncode(Address3.Text);
-            personDTO.Address.City = Server.HtmlEncode(City.Text);
-            personDTO.Address.Country = Server.HtmlEncode(Country.Text);
-            personDTO.Address.Postcode = Server.HtmlEncode(PostCode.Text);
-            try
+            using (TransactionScope scope = new TransactionScope())
             {
-                personDAL.Save(personDTO);
-            }
-            catch (Exception ex)
-            {
-                throw ex;
-            }
-            try
-            {
-                OrderDAL orderDAL = new OrderDAL(ConfigurationManager.ConnectionStrings["trainingConnectionString"].ConnectionString);
-                OrderDTO orderDTO = new OrderDTO();
-                orderDTO.PersonID = personDTO.PersonID;
-                orderDTO.OrderLines = GetValues();
-                orderDAL.Save(orderDTO);
-            }
-            catch (Exception ex)
-            {
-                throw ex; //new System.ArgumentException("An error occured when saving an order");
+                PersonDAL personDAL = new PersonDAL(ConfigurationManager.ConnectionStrings["trainingConnectionString"].ConnectionString);
+                PersonDTO personDTO = new PersonDTO();
+                personDTO.Firstname = Server.HtmlEncode(FirstName.Text);
+                personDTO.Surname = Server.HtmlEncode(Surname.Text);
+                personDTO.Address = new AddressDTO();
+                personDTO.Address.Address1 = Server.HtmlEncode(Address1.Text);
+                personDTO.Address.Address2 = Server.HtmlEncode(Address2.Text);
+                personDTO.Address.Address3 = Server.HtmlEncode(Address3.Text);
+                personDTO.Address.City = Server.HtmlEncode(City.Text);
+                personDTO.Address.Country = Server.HtmlEncode(Country.Text);
+                personDTO.Address.Postcode = Server.HtmlEncode(PostCode.Text);
+                try
+                {
+                    personDAL.Save(personDTO);
+                }
+                catch (Exception ex)
+                {
+                    throw ex;
+                }
+                try
+                {
+                    OrderDAL orderDAL = new OrderDAL(ConfigurationManager.ConnectionStrings["trainingConnectionString"].ConnectionString);
+                    OrderDTO orderDTO = new OrderDTO();
+                    orderDTO.PersonID = personDTO.PersonID;
+                    orderDTO.OrderLines = GetValues();
+                    orderDAL.Save(orderDTO);
+                }
+                catch (Exception ex)
+                {
+                    throw ex; //new System.ArgumentException("An error occured when saving an order");
+                }
+                scope.Complete();
             }
             return true;
         }
